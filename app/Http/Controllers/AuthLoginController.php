@@ -57,21 +57,16 @@ class AuthLoginController extends Controller
     public function login(AuthLoginRequest $request)
     {
         $request->request->add(['email' =>  $request->username]);
-        $request->request->add(['def_password' =>  $request->password]);
-
         $credentials1 = $request->only('username','password');
         $credentials2 = $request->only('email','password');
 
-        // $match = DB::table('users')->select('id')->where('def_password', bcrypt($request->password))->first();
-        $credentials3 = $request->only('email','def_password');
-
-        if (Auth::attempt($credentials1) || Auth::attempt($credentials2) || Auth::attempt($credentials3)) {
+        if (Auth::attempt($credentials1) || Auth::attempt($credentials2)) {
             if (Auth::user()->status != 1) {
                 \Session::flush();
                 Auth::logout();
                 return redirect("sign-in")->with("flashMessageDanger", "Account is suspended !");
             }else{
-                return redirect()->route("MyEvents"); 
+                return redirect()->route("index"); 
             }
         } else {
             return redirect("sign-in")->with("flashMessageDanger", "Invalid User Credentials.");

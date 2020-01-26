@@ -17,6 +17,11 @@ class HomeController extends Controller
             $exitCode1 = Artisan::call('view:clear');
             return redirect('/my-events');
         }
+
+    public function index_page()
+    {
+        return view('frontend.index');
+    }
     public function demo_view()
     {
         return View('files.demo');

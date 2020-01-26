@@ -7,6 +7,7 @@
 
 Route::group(['middleware' => 'check_user_access','auth'], function () {
     //my-events page
+
     Route::get("pay","PayOrderController@store")->name("demo");
     Route::get("demo","HomeController@demo_view")->name("demo");
     Route::get("demo_order","HomeController@demo_order_view")->name("demo");
@@ -66,8 +67,11 @@ Route::group(['middleware' => 'check_user_access','auth'], function () {
     Route::post("withdraw-cash","WithdrawController@withdraw_money")->name("WithdrawCredit");
     Route::post("withdraw-history","WithdrawController@withdraw_status")->name("withdraw-status");
 
+    Route::get("/","HomeController@index_page")->name("index");
 
 });
+Route::get("/","HomeController@index_page")->name("index");
+
 Route::get("qrcode","OrderController@qr_generate");
 
 Route::post("buy-ticket","PaymentController@ticket_generate")->name("ticket-generate");
@@ -84,9 +88,6 @@ Route::get("exam","OrderController@demo_example");
     Route::get("sign-up","Auth\LoginController@showRegistarForm")->name("sign-up");
 
     Route::get("ticket-view/{tran_id}/{event_id}/{ticket_id}/{random_number}","PaymentController@ticket_view");
-
-
-Route::get("/","HomeController@index")->name("/");
 
 Route::get('clear', 'HomeController@All_clear');
 

@@ -13,7 +13,7 @@
 		
 		<!-- Stylesheets -->
 		<link href="{!! asset('master/css/responsive.css') !!}" rel="stylesheet">
-		<link href="{!! asset('master/css/style.css') !!}" rel="stylesheet">
+		<link href="{!! asset('master/css/style2.css') !!}" rel="stylesheet">
 		<link href="{!! asset('master/css/datepicker.min.css') !!}" rel="stylesheet">
 		<link href="{!! asset('master/css/bootstrap.min.css') !!}" rel="stylesheet">
 		<link href="{!! asset('master/css/all.min.css') !!}" rel="stylesheet">
