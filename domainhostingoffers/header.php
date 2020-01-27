@@ -18,6 +18,8 @@
 <link href="assets/css/owl.theme.green.min.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.css">
 <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -54,11 +56,20 @@
     </li>
     <li class="nav-item">
       <ul class="side-menu">
-        <li class="nav-item">
+        <li class="nav-item" style="float:left;">
           <a href="submit_offer.php" class="nav-link">Submit Offer</a>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">Log in</a>
+        <li class="nav-item"style="float:right;">
+          <!-- <a href="#" class="nav-link"style="float:left; margin-right:5px;">Log in</a>
+          <a href="#" class="nav-link"style="float:right;margin-left:5px;">Sign up</a> -->
+          <a class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="float:right;">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
         </li>
 
       </ul>
