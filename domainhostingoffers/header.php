@@ -63,12 +63,11 @@
           <!-- <a href="#" class="nav-link"style="float:left; margin-right:5px;">Log in</a>
           <a href="#" class="nav-link"style="float:right;margin-left:5px;">Sign up</a> -->
           <a class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
+    John Doe
   </a>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="float:right;">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+    <a class="dropdown-item" href="dashboard.php">My Account</a>
+    <a class="dropdown-item" href="#">Offer Management</a>
   </div>
         </li>
 

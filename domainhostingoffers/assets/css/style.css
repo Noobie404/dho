@@ -20,10 +20,10 @@
     margin-bottom: -160px;
 }
 .navbar-nav.ml-auto {
-    margin-right: 20px;
+    margin-right: 0px;
 }
 .nav-item {
-    margin-right: 10px;
+    margin-right: 1px;
 }
 .side-menu li .nav-link {
 
@@ -1266,4 +1266,5 @@ font-family: barlow;
   top: 71%;
   float: right !important;
   left: unset;
+  right: 0px;
 }
