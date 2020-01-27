@@ -66,12 +66,40 @@ Route::group(['middleware' => 'check_user_access','auth'], function () {
 
     Route::post("withdraw-cash","WithdrawController@withdraw_money")->name("WithdrawCredit");
     Route::post("withdraw-history","WithdrawController@withdraw_status")->name("withdraw-status");
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get("/","HomeController@index_page")->name("index");
+Route::get("/","HomeController@index_page")->name("/");
 
+Route::get("domain-offer","HomeController@domain_offer")->name("DomainOffer");
+Route::get("hosting-offer","HomeController@hosting_offer")->name("HostingOffer");
+Route::get("combo-offer","HomeController@combo_offer")->name("CombogOffer");
+Route::get("webserver-offer","HomeController@webserver_offer")->name("WebservergOffer");
+//login form
+Route::get('sign-in', 'Auth\LoginController@showLoginForm')->name('login');
+//register form
+Route::get("sign-up","Auth\LoginController@showRegistarForm")->name("sign-up");
+
+Route::group(['middleware' => 'check_user_access','auth'], function () {
+
+    Route::get("/","HomeController@index_page")->name("/");
     Route::get("/","HomeController@index_page")->name("index");
+    Route::get("submit-offer","HomeController@submit_offer")->name("SubmitOffer");
+    Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
+});
+Route::get('dhoadmin', 'AuthLoginController@admin_login_form')->name('admin.login');
+
+Route::group(['middleware' => 'CheckAdmin','auth'], function () {
+
+    Route::get('user-list', 'Dashboard\UserInfoController@user_info')->name('UserList');
+    Route::get('product-list/{id?}', 'Dashboard\AuthProductController@product_info')->name('ProductList');
+    Route::post('product-list-dt', 'Dashboard\AuthProductController@product_info_dt');
+    Route::get('single-product-info/{id}', 'Dashboard\AuthProductController@product_info_single');
+    Route::post('single-product-info', 'Dashboard\AuthProductController@auth_edit_offer')->name('AuthEditOffer');
 
 });
-Route::get("/","HomeController@index_page")->name("index");
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("qrcode","OrderController@qr_generate");
 
 Route::post("buy-ticket","PaymentController@ticket_generate")->name("ticket-generate");
@@ -82,10 +110,6 @@ Route::get("e/{event_link}","EventControler@event_details_for_all");
 Route::get("exam","OrderController@demo_example");
 
 
-    //login form
-    Route::get('sign-in', 'Auth\LoginController@showLoginForm')->name('login');
-    //register form
-    Route::get("sign-up","Auth\LoginController@showRegistarForm")->name("sign-up");
 
     Route::get("ticket-view/{tran_id}/{event_id}/{ticket_id}/{random_number}","PaymentController@ticket_view");
 
@@ -125,5 +149,4 @@ Route::group(['middleware' => 'CheckAdmin','auth'], function () {
 
 });
 
-Route::get('tgadmin', 'AuthLoginController@admin_login_form')->name('admin.login');
 Route::post('admin-login', 'AuthLoginController@admin_login_post')->name('admin.login.post');

@@ -56,7 +56,7 @@
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4">
                                             <small class="opacity-5"><i class="fa fa-calculator"> </i></small>
-                                            {{$total_event}}
+                                            11
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4 text-danger">
                                             <small class="opacity-5 text-muted"><i class="fa fa-university"></i> </small>
-                                        {{$total_user}}
+                                        11
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4">
                                             <small class="opacity-5"><i class="fa fa-calculator"> </i></small>
-                                            {{round($total_income, 2)}} TK
+                                            11
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4">
                                             <small class="opacity-5"><i class="fa fa-angle-down"></i> </small>
-                                            {{round($total_rev, 2)}} TK
+                                            11
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                                 <i class="fa fa-address-card"></i>
                                             </span>
                                             <small class="opacity-5"></small>
-                                            {{$total_reg}}
+                                            11
                                         </div>
                                     </div>
                                 </div>

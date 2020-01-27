@@ -9,7 +9,7 @@
         <title>Ticket Gripe - Login Now</title>
 		
         <!-- Favicon Icon -->
-        <link rel="icon" type="image/png" href="{!! asset('master/images/icon1.png') !!}">
+        <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}">
 		
         <!-- Stylesheets -->
         <link href="{!! asset('master/css/responsive.css') !!}" rel="stylesheet">
@@ -32,7 +32,7 @@
                                     <div class="col-lg-6">
                                         <div class="lg-left">
                                             <div class="lg-logo">
-                                                <a href="{{route('/')}}"><img src="{!! asset('master/images/logo.png') !!}" alt=""></a>
+                                                <a href="{{route('index')}}"><img src="{!! asset('master/images/logo.png') !!}" alt=""></a>
                                             </div>
                                             <div class="lr-text">
                                                 <h2>Login Now2</h2>

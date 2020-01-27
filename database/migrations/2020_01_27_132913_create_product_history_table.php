@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
+class CreateProductHistoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('offers', function (Blueprint $table) {
+        Schema::create('product_history', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('sub_title');
@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->string('affiliate_link')->nullable();
             $table->string('status');
             $table->unsignedBigInteger('user_id');
+            $table->string('user_type');
             $table->string('product_id');
             $table->string('currency')->nullable()->default("BDT");
             $table->integer('page_visitor')->nullable();
@@ -37,7 +38,6 @@ class CreateEventsTable extends Migration
             $table->engine = 'InnoDB'; 	
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -48,6 +48,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offers');
+        Schema::dropIfExists('product_history');
     }
 }

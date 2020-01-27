@@ -78,7 +78,7 @@ class AuthLoginController extends Controller
         if(Auth::user()->user_type=="Super Admin" || Auth::user()->user_type == "Admin" ){
             \Session::flush();
             Auth::logout();
-            return redirect("tgadmin")->with("flashMessageSuccess", "Logout Succesfully");
+            return redirect("dhoadmin")->with("flashMessageSuccess", "Logout Succesfully");
            
         }else if(Auth::user()->user_type == "user"){
             \Session::flush();

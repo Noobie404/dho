@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        date_default_timezone_set('Asia/Dhaka');
+    }
         public function All_clear(){
             $exitCode1 = Artisan::call('cache:clear');
             $exitCode2 = Artisan::call('route:clear');
@@ -22,6 +26,39 @@ class HomeController extends Controller
     {
         return view('frontend.index');
     }
+    public function domain_offer()
+    {
+        return view('frontend.domain_offers');
+    }
+    public function hosting_offer()
+    {
+        return view('frontend.domain_offers');
+    }
+    public function combo_offer()
+    {
+        return view('frontend.domain_offers');
+    }
+    public function webserver_offer()
+    {
+        return view('frontend.domain_offers');
+    }
+    public function submit_offer()
+    {
+        return view('frontend.submit_offer');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function demo_view()
     {
         return View('files.demo');

@@ -24,7 +24,7 @@ class UserInfoController extends Controller
     public function user_info_dt(Request $request)
     {
         $dataSet = DB::table("users")
-            ->select('id','username','fullname','email','mobile','created_at','status', DB::raw('(SELECT IFNULL(sum(orders.sold_amount),0) FROM `orders` WHERE users.id=orders.user_id) as sold_amount'), DB::raw('(SELECT IFNULL(count(events.id),0) FROM `events` WHERE users.id=events.user_id) as event_count'))
+            ->select('id','username','fullname','email','mobile','created_at','status', DB::raw('(SELECT IFNULL(sum(offers.id),0) FROM `offers` WHERE users.id=offers.user_id) as total_product'))
             ->where('user_type', 'user')
             ->orderBy('created_at', 'DESC');
 

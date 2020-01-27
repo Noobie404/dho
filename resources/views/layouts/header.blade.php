@@ -19,8 +19,8 @@
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
-    <link rel="icon" type="image/png" href="{!! asset('master/images/icon1.png') !!}" sizes="16x16">
-    <link rel="icon" type="image/png" href="{!! asset('master/images/icon1.png') !!}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}" sizes="32x32">
     <script src="{!! asset('js/moment-with-locales.min.js') !!}"></script>
     <link href="{!! asset('main.css') !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('css/gallery.css') !!}" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
             <div class="app-header__logo" style="padding-left: 18px !important;">
                 <a href="{{ route('dashboard') }}">
                     <div class="logo-src"> 
-                        <img src="{!! asset('master/images/logo.png') !!}" style="height: 50px;" alt="">
+                        <img src="{!! asset('master/img/logo.png') !!}" style="height: 50px;" alt="">
                     </div>
                 </a>
                 <div class="header__pane ml-auto">

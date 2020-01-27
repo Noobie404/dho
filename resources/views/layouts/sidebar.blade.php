@@ -11,10 +11,10 @@
                     <i class="metismenu-icon pe-7s-culture"></i>
                     User List
                 </a>
-                <a href="{{route('EventList')}}" aria-expanded="true" class="@yield('EventList')">
+                <a href="{{route('ProductList')}}" aria-expanded="true" class="@yield('ProductList')">
                     <!-- <a href="javascript:void(0)" aria-expanded="true" id="coming_soon"> -->
                     <i class="metismenu-icon pe-7s-note2"></i>
-                    Event List
+                    Product List
                 </a>
             </li>
             <li class="app-sidebar__heading">Payment Information</li>

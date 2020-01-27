@@ -221,7 +221,7 @@
                                 <div class="row">											
                                     <div class="col-md-6">											
                                         <div class="select-bg">									
-                                        <div class="input-group date" id="id_5">
+                                            <div class="input-group date" id="id_5">
                                                 <span class="date-span">Start Time :</span>
                                                 <input value="{{javascript_dateformate($event_details->start_date) }}"  id="out_datetime" name="start_time" type="text" class="form-control" style="border-top-left-radius: .25rem;border-bottom-left-radius: .25rem;" required>
                                                 <div class="input-group-addon input-group-append">

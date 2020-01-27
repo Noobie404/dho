@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <img class="cross" src="assets/img/cross.svg" alt="">
+          <img class="cross" src="{!! asset('master/img/cross.svg') !!}" alt="">
         </button>
 
       </div>
@@ -13,7 +13,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6">
-                <img class="img-fluid pop-img" src="assets/img/pop-up.svg" alt="">
+                <img class="img-fluid pop-img" src="{!! asset('master/img/pop-up.svg') !!}" alt="">
 
             </div>
             <div class="col-md-5">
@@ -24,7 +24,7 @@
                 <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth.</p>
               </div>
               <div class="promo-code">
-                <h3>1231231 <span class="line"></span></h3> <img src="assets/img/unlink.svg" alt="">
+                <h3>1231231 <span class="line"></span></h3> <img src="{!! asset('master/img/unlink.svg') !!}" alt="">
               </div>
               <div class="promo-note">
                 <h2>Thanks For Purchasing!</h2>
@@ -94,8 +94,15 @@
 <div class="footer-bottom">
   <h3>Copyright © 2019 All Rights Reserved, A brand of Innovadeus Pvt. Ltd.</h3>
 </div>
-<script type="text/javascript" src="assets/js/owl.carousel.js"> </script>
-<script type="text/javascript" src="assets/js/owl.carousel.min.js"> </script>
+
+<script type="text/javascript" src="{!! asset('master/js/owl.carousel.js') !!}"> </script>
+<script type="text/javascript" src="{!! asset('master/js/owl.carousel.min.js') !!}"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script src="{!! asset('master/js/bootstrap-datetimepicker.js') !!}"></script>
+<script src="{!! asset('master/js/bootstrap-datetimepicker.min.js') !!}"></script>
+<script src="https://kit.fontawesome.com/73605b6102.js" crossorigin="anonymous"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -104,8 +111,8 @@ $(document).ready(function(){
     margin:10,
     nav:true,
     navText: [
-      '<img aria-label="' + 'Previous' + '" src="assets/img/back.svg">',
-      '<img aria-label="' + 'Previous' + '" src="assets/img/next.svg">'
+      '<img aria-label="' + 'Previous' + '" src="{!! asset('master/img/back.svg') !!}">',
+      '<img aria-label="' + 'Previous' + '" src="{!! asset('master/img/next.svg') !!}">'
     ],
     navSpeed: false,
     navElement: 'button type="button" role="presentation"',
@@ -133,8 +140,8 @@ $(".owl-special").owlCarousel({
   margin:10,
   nav:true,
   navText: [
-    '<img aria-label="' + 'Previous' + '" src="assets/img/back.svg">',
-    '<img aria-label="' + 'Previous' + '" src="assets/img/next.svg">'
+    '<img aria-label="' + 'Previous' + '" src="{!! asset('master/img/back.svg') !!}">',
+    '<img aria-label="' + 'Previous' + '" src="{!! asset('master/img/next.svg') !!}">'
   ],
   navSpeed: false,
   navElement: 'button type="button" role="presentation"',

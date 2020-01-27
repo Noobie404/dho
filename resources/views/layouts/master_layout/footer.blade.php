@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <ul class="copyright-text">
-                    <li><a href="{{route('/')}}"><img src="{!! asset('master/images/icon1.png') !!}" alt=""></a></li>
+                    <li><a href="{{route('index')}}"><img src="{!! asset('master/images/icon1.png') !!}" alt=""></a></li>
                     <li>
                         <div class="ftr-1"><i class="far fa-copyright"></i> 2020 Ticket Gripe by <a href="http://innovadeus.com" target="_blank">Innovadeus Pvt Ltd</a>. All Rights Reserved.</div>
                     </li>
