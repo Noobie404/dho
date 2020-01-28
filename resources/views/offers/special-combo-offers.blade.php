@@ -1,17 +1,19 @@
-<section id="offers">
+<section id="special-offers" style="background: url(master/img/offer-section.png); background-repeat:no-repeat;background-size:cover;">
   <!-- <div class="offers-back-img">
     <img class="img-fluid" src="assets/img/Group 870.svg" alt="">
 
   </div> -->
   <div class="offer-header">
-    <h1>Exclusive Offers</h1>
+    <h1 style="color:#000;">Special Offers</h1>
   </div>
   <div class="offers-card">
-    <div class="container">
-      <div class="row">
 
-        @foreach($all_offers as $all_offer)
-        @if($all_offer->offer_cat == "Exclusive" && $all_offer->product_cat == 'Domain')
+
+    <div class="container">
+
+      <div class="row">
+      @foreach($all_offers as $all_offer)
+        @if($all_offer->offer_cat == "Special" && $all_offer->product_cat == 'Combo')
           <div class="col-md-4">
               <div class="card">
                 <div class="card-header">
@@ -21,7 +23,7 @@
                   </div>
                     <div class="col-sm-6">
                       <h3>
-                      Domain Offer 
+                      Combo Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
                     <div class="col-sm-3" style="padding-right: 0;">
@@ -96,8 +98,8 @@
             </div>
         @endif
         @endforeach
-
       </div>
+
     </div>
   </div>
   <div class="offer-button">

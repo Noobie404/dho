@@ -11,7 +11,7 @@
       <div class="row">
 
         @foreach($all_offers as $all_offer)
-        @if($all_offer->offer_cat == "Exclusive" && $all_offer->product_cat == 'Domain')
+        @if($all_offer->offer_cat == "Exclusive" && $all_offer->product_cat == 'Hosting')
           <div class="col-md-4">
               <div class="card">
                 <div class="card-header">
@@ -21,7 +21,7 @@
                   </div>
                     <div class="col-sm-6">
                       <h3>
-                      Domain Offer 
+                      Hosting Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
                     <div class="col-sm-3" style="padding-right: 0;">
