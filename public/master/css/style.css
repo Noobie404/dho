@@ -1,3 +1,6 @@
+body{
+  overflow-x: hidden;
+}
 .banner-back img {
     width: 950px;
     float: right;
@@ -6,11 +9,13 @@
 .side-menu li {
     list-style: none;
     display: inline-block;
+    margin-right: 9px;
 
 }
 .side-menu {
-    margin-top: -16px;
+    margin-top: 0px;
     text-align: center;
+    padding-left: 15px;
 }
 .nav-link {
     color:
@@ -20,10 +25,10 @@
     margin-bottom: -160px;
 }
 .navbar-nav.ml-auto {
-    margin-right: 20px;
+    margin-right: 0px;
 }
 .nav-item {
-    margin-right: 10px;
+    margin-right: 1px;
 }
 .side-menu li .nav-link {
 
@@ -252,6 +257,9 @@ display: none;
 
     margin-top: 40px;
 
+}
+#tabsJustified .nav-item {
+    margin-right: 10px;
 }
 .dot {
   height: 5px;
@@ -628,7 +636,7 @@ border: 1px solid transparent;
 }
 .nav-tabs {
     border-bottom: none;
-    margin-left: 15%;
+    margin-left: 12%;
 }
 #home1{
   background: none;
@@ -1002,12 +1010,12 @@ footer .container {
         border-radius: 5px;
     }
     #nav-contact {
-    
+
         border: 1px solid
-    
+
         #961FDD;
         border-radius: 5px;
-    
+
     }
     #submit_wrapper {
         margin-top: 35px;
@@ -1032,232 +1040,232 @@ footer .container {
         margin-left: 30px;
     }
     #submit_length label {
-    
+
         color:
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #active_length label {
-    
+
         color:
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #expired_length label {
-    
+
         color:
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #submit_length select {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #active_length select {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #expired_length select {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #submit_filter input {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
-    
+
     }
     #active_filter input {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
-    
+
     }
     #expired_filter input {
-    
+
         border-radius: 3px;
         border: 1px solid
-    
+
         #000;
-    
+
     }
     #submit_filter {
-    
+
         margin-right: 30px;
-    
+
     }
     #active_filter {
-    
+
         margin-right: 30px;
-    
+
     }
     #expired_filter {
-    
+
         margin-right: 30px;
-    
+
     }
     #submit_filter label {
-    
+
         color:
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #active_filter label {
-    
+
         color:
-    
+
         #000;
         font-family: barlow;
-    
+
     }
     #expired_filter label {
-    
+
         color:#000;
         font-family: barlow;
-    
+
     }
     #submit_info {
-    
+
         margin-left: 30px;
         font-family: barlow;
         font-size: 17px;
-    
+
     }
     #submit_paginate {
-    
+
         margin-right: 30px;
-    
+
     }
     #active_info {
-    
+
         margin-left: 30px;
         font-family: barlow;
         font-size: 17px;
-    
+
     }
     #active_paginate {
-    
+
         margin-right: 30px;
-    
+
     }
     #expired_info {
-    
+
         margin-left: 30px;
         font-family: barlow;
         font-size: 17px;
-    
+
     }
     #expired_paginate {
-    
+
         margin-right: 30px;
-    
+
     }
     #submit_paginate .previous {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     #submit_paginate .next {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     #active_paginate .previous {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     #active_paginate .next {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     #expired_paginate .previous {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     #expired_paginate .next {
-    
+
         padding-left: 15px;
         border: 1px solid #8A14D2;
         border-radius: 25px;
         padding-right: 15px;
         padding-top: 5px;
         padding-bottom: 5px;
-    
+
     }
     .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current{
     color:#333 !important;
-    
+
     border: 1px solid #8A14D2!important;
-    
+
     border-radius: 50%;
     background:transparent!important;
-    
+
     font-family: barlow;
     }
     #nav-tabContent th {
-    
+
         font-family: barlow;
-    
+
     }
     #nav-contact tr {
-    
+
         font-family: barlow;
-    
+
     }
     .dropdown-menu{
     top: 71%;
