@@ -8,7 +8,7 @@
       <div class="breadcrumb-section">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Domain offers</li>
           </ol>
         </nav>
@@ -52,7 +52,7 @@
           @include('offers.exclusive-domain-offers')
         </div>
         <div id="special-domain-offers" class="tab-pane fade">
-          @include('offers.exclusive-domain-offers')
+          @include('offers.special-domain-offers')
         </div>
         <div id="regular-domain-offers" class="tab-pane fade">
           @include('offers.regular-domain-offers')

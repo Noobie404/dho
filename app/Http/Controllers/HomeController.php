@@ -19,16 +19,49 @@ class HomeController extends Controller
             $exitCode3 = Artisan::call('config:clear');
             $exitCode1 = Artisan::call('cache:clear');
             $exitCode1 = Artisan::call('view:clear');
-            return redirect('/my-events');
+            return redirect('/');
         }
 
     public function index_page()
     {
-        return view('frontend.index');
+            $start_date = date_validate(date('Y-m-d'));
+
+        $exlusive_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->where('offer_cat','Exclusive')
+            ->where('status','active')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->take(3)
+            ->get();
+        $special_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->where('offer_cat','Special')
+            ->where('status','active')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->take(3)
+            ->get();
+        $regular_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->where('offer_cat','Regular')
+            ->where('status','active')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->take(3)
+            ->get();
+        return view('frontend.index',compact('exlusive_offers','special_offers','regular_offers'));
     }
     public function domain_offer()
     {
-        return view('frontend.domain_offers');
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.domain_offers',compact('all_offers'));
     }
     public function hosting_offer()
     {

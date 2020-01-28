@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserInfoController extends Controller
@@ -19,6 +20,12 @@ class UserInfoController extends Controller
     public function user_info()
     {
         return view('dashboard.user_info.user_info');
+    }
+
+    public function user_dashboard()
+    {
+        $all_offers = DB::table('offers')->select('id','product_id','title','product_cat','offer_cat','offer_end','status')->where('user_id', Auth::user()->id)->get();
+        return view('frontend.dashboard',compact('all_offers'));
     }
 
     public function user_info_dt(Request $request)

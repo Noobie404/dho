@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, shrink-to-fit=9">
         <meta name="description" content="Gambolthemes">
         <meta name="author" content="Gambolthemes">
-        <title>Ticket Gripe - Login Now</title>
+        <title>Domain Hosting Offer - Login Now</title>
 		
         <!-- Favicon Icon -->
         <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}">
@@ -17,7 +17,7 @@
         <link href="{!! asset('master/css/datepicker.min.css') !!}" rel="stylesheet">
         <link href="{!! asset('master/css/bootstrap.min.css') !!}" rel="stylesheet">
         <link href="{!! asset('master/css/all.min.css') !!}" rel="stylesheet">
-	
+    
     </head>
 
     <body class="body-bg" oncontextmenu="return false;">				
@@ -32,17 +32,17 @@
                                     <div class="col-lg-6">
                                         <div class="lg-left">
                                             <div class="lg-logo">
-                                                <a href="{{route('index')}}"><img src="{!! asset('master/images/logo.png') !!}" alt=""></a>
+                                                <a href="{{route('/')}}"><img src="{!! asset('master/img/logo.png') !!}" alt=""></a>
                                             </div>
                                             <div class="lr-text">
-                                                <h2>Login Now2</h2>
-                                                <p>Ticketgripe.com a brand of Innovadeus Pvt Ltd.</p>
+                                                <h2>Domain Hosting Offer</h2>
+                                                <p>Domain Hosting Offer a brand of Innovadeus Pvt Ltd.</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="lr-right">
-                                        <h4>Sign In to Ticket Gripe</h4>
+                                        <h4>Sign In to Domain Hosting Offer</h4>
                                             <div class="login-register-form">
                                             @include("layouts.includes.flash")
                                             <form class="form-horizontal" method="POST" action="{{ route('user.login') }}">

@@ -66,7 +66,7 @@ class AuthLoginController extends Controller
                 Auth::logout();
                 return redirect("sign-in")->with("flashMessageDanger", "Account is suspended !");
             }else{
-                return redirect()->route("index"); 
+                return redirect()->route("/"); 
             }
         } else {
             return redirect("sign-in")->with("flashMessageDanger", "Invalid User Credentials.");

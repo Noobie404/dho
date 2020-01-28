@@ -8,7 +8,7 @@
       <div class="breadcrumb-section" style="margin-left:-280px;">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Submit Offer</li>
           </ol>
         </nav>
@@ -138,7 +138,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-lg">Offer Note</span>
           </div>
-          <input type="text" class="form-control" value="{{old('offer_note')}}" name="offer_note" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="" required>
+          <input type="text" class="form-control" value="{{old('offer_note')}}" name="offer_note" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="">
         </div>
       </div>
     </div>

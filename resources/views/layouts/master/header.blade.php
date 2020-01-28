@@ -31,14 +31,14 @@
     <div class="wrapper-inner">
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark rounded">
-          <a class="navbar-brand" href="{{route('index')}}"> <img src="{!! asset('master/img/logo.png') !!}" alt=""> </a>
+          <a class="navbar-brand" href="{{route('/')}}"> <img src="{!! asset('master/img/logo.png') !!}" alt=""> </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a href="{{route('index')}}" class="nav-link">Home</a>
+                <a href="{{route('/')}}" class="nav-link">Home</a>
               </li>
               <li class="nav-item">
                 <a href="{{route('DomainOffer')}}" class="nav-link">Domain Offers</a>
@@ -57,9 +57,27 @@
                   <li class="nav-item">
                     <a href="{{route('SubmitOffer')}}" class="nav-link">Submit Offer</a>
                   </li>
-                  <li class="nav-item">
-                    <a href="{{route('login')}}" class="nav-link">Log in</a>
-                  </li>
+                  <li class="nav-item"style="float:right;">
+                          @if(null == Auth::user())
+                          <a href="{{route('login')}}" class="nav-link"style="float:left; margin-right:5px;">Log in</a>
+                          <a href="#" class="nav-link"style="float:right;margin-left:5px;">Sign up</a>
+                          
+                          </a>
+                          @else
+                              <a class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{Auth::user()->username}}
+                          
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="float:right;">
+                            <a class="dropdown-item" href="dashboard.php">My Account</a>
+                            <a class="dropdown-item" href="{{route('Userdashboard')}}">Offer Management</a>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+                          </div>
+                            <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                          </form>
+                          @endif
+                        </li>
 
                 </ul>
               </li>

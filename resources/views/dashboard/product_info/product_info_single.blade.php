@@ -121,6 +121,7 @@
                                             <div class="form-group form-line-height col-lg-6 col-md-12">
                                             <label class="input-label">Product Category<span class="important">*</span></label>
                                                 <select class="form-control-sm form-control" id="product_cat" name="product_cat" data-select2-id="2" tabindex="-1" aria-hidden="true" required>
+                                                    <option value="{{$product_info->product_cat}}">{{$product_info->product_cat}} Offer</option>
                                                     <option value="Domain">Domain Offer</option>
                                                     <option value="Hosting">Hosting Offer</option>
                                                     <option value="Combo">Combo Offer</option>
@@ -140,6 +141,7 @@
                                             <div class="form-group form-line-height col-lg-6 col-md-12">
                                             <label class="input-label">Offer Category<span class="important">*</span></label>
                                                 <select class="form-control-sm form-control" id="offer_cat" name="offer_cat" data-select2-id="2" tabindex="-1" aria-hidden="true" required>
+                                                    <option value="{{$product_info->offer_cat}}">{{$product_info->offer_cat}} Offer</option>
                                                     <option value="Regular">Regular Offer</option>
                                                     <option value="Exclusive">Exclusive Offer</option>
                                                     <option value="Special">Special Offer</option>

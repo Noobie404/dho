@@ -6,10 +6,10 @@
 		<meta name="viewport" content="width=device-width, shrink-to-fit=9">
 		<meta name="description" content="Gambolthemes">
 		<meta name="author" content="Gambolthemes">
-		<title>Ticket Gripe - Register Now</title>
+		<title>Domain Hosting Offer - Register Now</title>
 		
 		<!-- Favicon Icon -->
-		<link rel="icon" type="image/png" href="{!! asset('master/images/icon1.png') !!}">
+		<link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}">
 		
 		<!-- Stylesheets -->
 		<link href="{!! asset('master/css/responsive.css') !!}" rel="stylesheet">
@@ -34,17 +34,17 @@
 									<div class="col-lg-6">
 										<div class="lg-left">
 											<div class="lg-logo">
-												<a href="{{route('/')}}"><img src="{!! asset('master/images/logo.png') !!}" alt=""></a>
+												<a href="{{route('/')}}"><img src="{!! asset('master/img/logo.png') !!}" alt=""></a>
 											</div>
 											<div class="lr-text">
 												<h2>Register Now</h2>
-												<p>Ticketgripe.com a brand of Innovadeus Pvt Ltd.</p>
+												<p>Domain Hosting Offer is a brand of Innovadeus Pvt Ltd.</p>
 											</div>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="lr-right">
-											<h4>Sign Up to Ticket Gripe</h4>
+											<h4>Sign Up to Domain Hosting Offer</h4>
 											<div class="login-register-form">
 											@include("layouts.includes.flash")
 												<form class="form-horizontal" method="POST" action="{{ route('user.register') }}">

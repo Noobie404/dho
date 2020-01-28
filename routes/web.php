@@ -4,8 +4,46 @@
 // +===================================+
 // | User Login Information |
 // +===================================+
+Route::get("/","HomeController@index_page")->name("index");
+Route::get("/","HomeController@index_page")->name("/");
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::group(['middleware' => 'check_user_access','auth'], function () {
+
+    Route::get("domain-offer","HomeController@domain_offer")->name("DomainOffer");
+    Route::get("hosting-offer","HomeController@hosting_offer")->name("HostingOffer");
+    Route::get("combo-offer","HomeController@combo_offer")->name("CombogOffer");
+    Route::get("webserver-offer","HomeController@webserver_offer")->name("WebservergOffer");
+    //login form
+    Route::get('sign-in', 'Auth\LoginController@showLoginForm')->name('login');
+    //register form
+    Route::get("sign-up","Auth\LoginController@showRegistarForm")->name("sign-up");
+    //register action
+    Route::post("user-register","AuthLoginController@register")->name("user.register");
+    //login action
+    Route::post("user-login","AuthLoginController@login")->name("user.login");
+
+    Route::group(['middleware' => 'check_user_access','auth'], function () {
+
+        Route::get("submit-offer","HomeController@submit_offer")->name("SubmitOffer");
+        Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
+        //user Logout action
+        Route::post('user-logout', 'AuthLoginController@logout')->name("user.logout");
+        Route::get('user-dashboard', 'Dashboard\UserInfoController@user_dashboard')->name('Userdashboard');
+
+    });
+    Route::get('dhoadmin', 'AuthLoginController@admin_login_form')->name('admin.login');
+
+    Route::group(['middleware' => 'CheckAdmin','auth'], function () {
+
+        Route::get('user-list', 'Dashboard\UserInfoController@user_info')->name('UserList');
+        Route::get('product-list/{id?}', 'Dashboard\AuthProductController@product_info')->name('ProductList');
+        Route::post('product-list-dt', 'Dashboard\AuthProductController@product_info_dt');
+        Route::get('single-product-info/{id}', 'Dashboard\AuthProductController@product_info_single');
+        Route::post('single-product-info', 'Dashboard\AuthProductController@auth_edit_offer')->name('AuthEditOffer');
+    
+    });
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //my-events page
 
     Route::get("pay","PayOrderController@store")->name("demo");
@@ -66,40 +104,8 @@ Route::group(['middleware' => 'check_user_access','auth'], function () {
 
     Route::post("withdraw-cash","WithdrawController@withdraw_money")->name("WithdrawCredit");
     Route::post("withdraw-history","WithdrawController@withdraw_status")->name("withdraw-status");
-});
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Route::get("/","HomeController@index_page")->name("index");
-Route::get("/","HomeController@index_page")->name("/");
 
-Route::get("domain-offer","HomeController@domain_offer")->name("DomainOffer");
-Route::get("hosting-offer","HomeController@hosting_offer")->name("HostingOffer");
-Route::get("combo-offer","HomeController@combo_offer")->name("CombogOffer");
-Route::get("webserver-offer","HomeController@webserver_offer")->name("WebservergOffer");
-//login form
-Route::get('sign-in', 'Auth\LoginController@showLoginForm')->name('login');
-//register form
-Route::get("sign-up","Auth\LoginController@showRegistarForm")->name("sign-up");
 
-Route::group(['middleware' => 'check_user_access','auth'], function () {
-
-    Route::get("/","HomeController@index_page")->name("/");
-    Route::get("/","HomeController@index_page")->name("index");
-    Route::get("submit-offer","HomeController@submit_offer")->name("SubmitOffer");
-    Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
-});
-Route::get('dhoadmin', 'AuthLoginController@admin_login_form')->name('admin.login');
-
-Route::group(['middleware' => 'CheckAdmin','auth'], function () {
-
-    Route::get('user-list', 'Dashboard\UserInfoController@user_info')->name('UserList');
-    Route::get('product-list/{id?}', 'Dashboard\AuthProductController@product_info')->name('ProductList');
-    Route::post('product-list-dt', 'Dashboard\AuthProductController@product_info_dt');
-    Route::get('single-product-info/{id}', 'Dashboard\AuthProductController@product_info_single');
-    Route::post('single-product-info', 'Dashboard\AuthProductController@auth_edit_offer')->name('AuthEditOffer');
-
-});
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("qrcode","OrderController@qr_generate");
 
 Route::post("buy-ticket","PaymentController@ticket_generate")->name("ticket-generate");
