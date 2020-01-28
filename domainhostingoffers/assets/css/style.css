@@ -937,6 +937,13 @@ footer .container {
     color:
     #fff;
 }
+.dropdown-menu{
+  top: 71%;
+  float: right !important;
+  left: unset;
+  right: 0px;
+}
+
 /*_________________________________________________Dashboard CSS Below___________________________________________________*/
 
 .project-tab{
@@ -998,11 +1005,15 @@ color:
     border: 1px solid
     #961FDD;
     border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
 }
 #nav-profile {
     border: 1px solid
     #961FDD;
     border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
 }
 #nav-contact {
 
@@ -1010,6 +1021,8 @@ color:
 
     #961FDD;
     border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
 
 }
 #submit_wrapper {
@@ -1262,9 +1275,6 @@ font-family: barlow;
     font-family: barlow;
 
 }
-.dropdown-menu{
-  top: 71%;
-  float: right !important;
-  left: unset;
-  right: 0px;
+.nav-fill {
+    margin-left: 0px;
 }
