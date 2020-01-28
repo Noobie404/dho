@@ -723,6 +723,8 @@ margin-left: 20px;
 margin-bottom: 0px;
 float: left;
 width: 80%;
+position: relative;
+top: 4px;
 }
 .promo-code .line {
 margin-top: 0px;
@@ -999,7 +1001,6 @@ footer .container {
 }
 #nav-tab a {
     color:
-<<<<<<< HEAD
     black !important;
 }
 #nav-tab .active {
@@ -1288,7 +1289,6 @@ font-family: barlow;
 .nav-fill {
     margin-left: 0px;
 }
-=======
         #fff !important;
         font-family: barlow,sens-serif;
         font-weight: 400;
@@ -1568,4 +1568,3 @@ font-family: barlow;
     left: unset;
     right: 0px;
     }
->>>>>>> b8884eb2e9b96d4393516dbbeaa31b3cbdce69cd

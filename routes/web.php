@@ -21,6 +21,7 @@ Route::get("/","HomeController@index_page")->name("/");
     Route::post("user-register","AuthLoginController@register")->name("user.register");
     //login action
     Route::post("user-login","AuthLoginController@login")->name("user.login");
+    Route::post("promo-code","Dashboard\AuthProductController@promo_code_append");
 
     Route::group(['middleware' => 'check_user_access','auth'], function () {
 

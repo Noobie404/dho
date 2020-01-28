@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}">
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Barlow:400,700&display=swap" rel="stylesheet">
@@ -68,7 +68,7 @@
                           {{Auth::user()->username}}
                           
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="float:right;">
-                            <a class="dropdown-item" href="dashboard.php">My Account</a>
+                            <!-- <a class="dropdown-item" href="dashboard.php">My Account</a> -->
                             <a class="dropdown-item" href="{{route('Userdashboard')}}">Offer Management</a>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>

@@ -105,8 +105,13 @@
     </div>
   </div>
   <div class="offer-button" style="padding-bottom:100px;">
-    <a href="#">More Exclusive Offers</a>
+    <a id="exclusive-web-more" href="javascript:void(0)">More Exclusive Offers</a>
   </div>
+  <script>
+    $("#exclusive-web-more").click(function(){
+      $('#exclusive-web')[0].click();
+    }); 
+  </script>
 </section>
 <section id="special-offers">
   <!-- <div class="offers-back-img">
@@ -217,8 +222,13 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#">More Exclusive Offers</a>
+    <a id="special-web-more" href="javascript:void(0)">More Special Offers</a>
   </div>
+  <script>
+    $("#special-web-more").click(function(){
+      $('#special-web')[0].click();
+    }); 
+  </script>
 </section>
 <section id="regular-offers">
   <!-- <div class="offers-back-img">
@@ -328,6 +338,11 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#">More Exclusive Offers</a>
+    <a id="regular-web-more" href="javascript:void(0)">More Regular Offers</a>
   </div>
+  <script>
+    $("#regular-web-more").click(function(){
+      $('#regular-web')[0].click();
+    }); 
+  </script>
 </section>

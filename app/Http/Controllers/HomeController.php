@@ -50,7 +50,15 @@ class HomeController extends Controller
             ->orderBy('created_at', 'DESC')
             ->take(3)
             ->get();
-        return view('frontend.index',compact('exlusive_offers','special_offers','regular_offers'));
+        $expired_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->where('offer_cat','Regular')
+            ->where('status','active')
+            ->where("offer_end","<",$start_date . " 00:00:00")
+            ->orderBy('created_at', 'DESC')
+            ->take(3)
+            ->get();
+        return view('frontend.index',compact('exlusive_offers','special_offers','regular_offers','expired_offers'));
     }
     public function domain_offer()
     {

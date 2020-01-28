@@ -396,7 +396,6 @@ function loadjscssfile(filename, filetype){
                 $("#tickets-container").hide();
             }
         });
-
     });
 
     function changeFieldType() {

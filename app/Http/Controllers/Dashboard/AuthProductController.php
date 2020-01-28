@@ -108,6 +108,14 @@ class AuthProductController extends Controller
         } catch (\Exception $th) {
             return redirect('/single-product-info/'.$request->id)->with('flashMessageDanger',$th->getMessage());
         }
+    }
 
+    public function promo_code_append(Request $request)
+    {
+        echo '<pre>'; 
+        echo '======================<br>';
+        print_r($request);
+        echo '<br>======================';
+        exit();
     }
 }

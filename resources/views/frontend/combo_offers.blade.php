@@ -31,13 +31,13 @@
               <a class="show active" data-target="#all-domain-offers" data-toggle="tab" href="">All Offers</a>
             </li>
             <li class="nav-item">
-              <a data-target="#exclusive-domain-offers" data-toggle="tab" href="">Exclusive Offers</a>
+              <a id="exclusive-combo" data-target="#exclusive-domain-offers" data-toggle="tab" href="">Exclusive Offers</a>
             </li>
             <li class="nav-item">
-              <a data-target="#special-domain-offers" data-toggle="tab" href="">Special offers</a>
+              <a id="special-combo" data-target="#special-domain-offers" data-toggle="tab" href="">Special offers</a>
             </li>
             <li class="nav-item">
-              <a data-target="#regular-domain-offers" data-toggle="tab" href="">Regular Offers</a>
+              <a id="regular-combo" data-target="#regular-domain-offers" data-toggle="tab" href="">Regular Offers</a>
             </li>
           </ul>
         </div>

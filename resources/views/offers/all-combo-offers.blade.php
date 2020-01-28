@@ -91,8 +91,6 @@
                       <a class="card-details" href="#"> More Details </a>
                     </div>
                   </div>
-
-
                 </div>
               </div>
             </div>
@@ -105,8 +103,13 @@
     </div>
   </div>
   <div class="offer-button" style="padding-bottom:100px;">
-    <a href="#">More Exclusive Offers</a>
+    <a id="exclusive-combo-more" href="javascript:void(0)">More Exclusive Offers</a>
   </div>
+  <script>
+    $("#exclusive-combo-more").click(function(){
+      $('#exclusive-combo')[0].click();
+    }); 
+  </script>
 </section>
 <section id="special-offers">
   <!-- <div class="offers-back-img">
@@ -217,8 +220,13 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#">More Exclusive Offers</a>
+    <a id="special-combo-more" href="javascript:void(0)">More Special Offers</a>
   </div>
+  <script>
+    $("#special-combo-more").click(function(){
+      $('#special-combo')[0].click();
+    }); 
+  </script>
 </section>
 <section id="regular-offers">
   <!-- <div class="offers-back-img">
@@ -318,16 +326,19 @@
                   </div>
                 </div>
               </div>
-
             </div>
           @endif
           @endforeach
         </div>
       </div>
-
     </div>
   </div>
   <div class="offer-button">
-    <a href="#">More Exclusive Offers</a>
+    <a id="regular-combo-more" href="javascript:void(0)">More Regular Offers</a>
   </div>
+  <script>
+    $("#regular-combo-more").click(function(){
+      $('#regular-combo')[0].click();
+    }); 
+  </script>
 </section>

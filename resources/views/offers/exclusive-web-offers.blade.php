@@ -101,6 +101,6 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#">More Exclusive Offers</a>
+    <!-- <a href="#">More Exclusive Offers</a> -->
   </div>
 </section>

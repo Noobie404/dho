@@ -113,6 +113,7 @@
                         <table id="expired" class="display" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>SN</th>
                                     <th>Offer ID</th>
                                     <th>Offer Title</th>
                                     <th>Product Category</th>
