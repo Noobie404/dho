@@ -35,7 +35,7 @@ class OfferController extends Controller
             "product_id" => $product_id,
             'user_id' => Auth::user()->id,
             'status' => "pending",
-            'created_at'=>date('Y-m-d h:i:s')
+            'created_at'=>date('Y-m-d H:i:s')
         ];
         try {
             

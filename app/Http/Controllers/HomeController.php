@@ -58,6 +58,7 @@ class HomeController extends Controller
         $all_offers = DB::table("offers")
             ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
             ->where('status','active')
+            ->where('product_cat','Domain')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -65,15 +66,39 @@ class HomeController extends Controller
     }
     public function hosting_offer()
     {
-        return view('frontend.domain_offers');
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('product_cat','Hosting')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.hosting_offers',compact('all_offers'));
     }
     public function combo_offer()
     {
-        return view('frontend.domain_offers');
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('product_cat','Combo')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.combo_offers',compact('all_offers'));
     }
     public function webserver_offer()
     {
-        return view('frontend.domain_offers');
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('product_cat','Web-Server')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.web_offers',compact('all_offers'));
     }
     public function submit_offer()
     {

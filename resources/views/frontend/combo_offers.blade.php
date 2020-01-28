@@ -3,13 +3,13 @@
   <div class="container">
     <div class="row">
       <div class="page_heading">
-        <h1>Hosting Offers</h1><br>
+        <h1>Combo Offers</h1><br>
       </div>
       <div class="breadcrumb-section">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Hosting offers</li>
+            <li class="breadcrumb-item active" aria-current="page">Combo offers</li>
           </ol>
         </nav>
       </div>
@@ -46,16 +46,16 @@
       </div>
       <div id="tabsJustifiedContent" class="tab-content">
         <div id="all-domain-offers" class="tab-pane fade  active show">
-          @include('offers.all-hosting-offers')
+          @include('offers.all-combo-offers')
         </div>
         <div id="exclusive-domain-offers" class="tab-pane fade">
-          @include('offers.exclusive-hosting-offers')
+          @include('offers.exclusive-combo-offers')
         </div>
         <div id="special-domain-offers" class="tab-pane fade">
-          @include('offers.special-hosting-offers')
+          @include('offers.special-combo-offers')
         </div>
         <div id="regular-domain-offers" class="tab-pane fade">
-          @include('offers.regular-hosting-offers')
+          @include('offers.regular-combo-offers')
         </div>
       </div>
     </div>
