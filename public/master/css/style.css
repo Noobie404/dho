@@ -294,6 +294,10 @@ font-weight: 400;
 .card-header .img-fluid {
     background:#fff;
     padding: 8px;
+    max-height: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    min-width: 45px;
 }
 .card-header{
   background: transparent linear-gradient(278deg, #A020F0 0%, #9D1FEC 0%, #8C1BD2 100%);
@@ -301,11 +305,21 @@ font-weight: 400;
   border-top-left-radius: 7px !important;
 }
 
-
+.product-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.product-title h1 {
+    font-size: 65px;
+    font-family: barlow;
+}
+.product-table {
+    font-family: barlow;
+}
 .owl-prev img {
     padding: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
     background:#fff;
     border-radius: 50%;
     padding-left: 18px;
