@@ -63,15 +63,7 @@
                 </div>
                 <div class="col-sm-6">
                   <h3>
-                    @if($exclusive->product_cat == 'Domain')
-                    Domain Offer 
-                    @elseif($exclusive->product_cat == 'Hosting')
-                    Hosting Offer 
-                    @elseif($exclusive->product_cat == 'Combo')
-                    Combo Offer
-                    @else
-                    Web-Server Offer
-                    @endif
+                    {{$exclusive->product_cat}} Offer
                     
                     <br><span> {{$exclusive->title}} only {{$exclusive->price}} {{$exclusive->currency}} </span></h3>
                 </div>
@@ -88,10 +80,12 @@
               <div class="provider-name">
                 <h3>Provider Name:<span> {{$exclusive->provider}}</span></h3>
               </div><br>
+              @if($exclusive->promo_code != null)
               <div class="offer-link">
-                <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
-
-              </div><br>
+                <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$exclusive->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+              </div>
+              @endif
+              <br>
               <div class="offer-validity">
                 <h4>Offer Validity:</h4>
                 <div class="offer-time">
@@ -133,7 +127,7 @@
               <div class="card-buttons">
                 <div class="row">
                   <div class="col-sm-7">
-                    <a class="card-order" href="{{$exclusive->affiliate_link}}" target="_blank"> Order Now </a>
+                    <a id="order-now-{{$exclusive->id}}" class="card-order" href="{{$exclusive->affiliate_link}}" target="_blank"> Order Now </a>
                   </div>
                   <div class="col-sm-5">
                     <a class="card-details" href="#!"> More Details </a>
@@ -147,7 +141,7 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#!">More Exclusive Offers</a>
+    <a href="{{route('AllExclusiveOffer')}}">More Exclusive Offers</a>
   </div>
 </section>
 <section id="special-offers">
@@ -180,16 +174,7 @@
                 </div>
                 <div class="col-sm-6">
                   <h3>
-                    @if($special->product_cat == 'Domain')
-                    Domain Offer 
-                    @elseif($special->product_cat == 'Hosting')
-                    Hosting Offer 
-                    @elseif($special->product_cat == 'Combo')
-                    Combo Offer
-                    @else
-                    Web-Server Offer
-                    @endif
-                    
+                    {{$special->product_cat}} Offer
                     <br><span> {{$special->title}} only {{$special->price}} {{$special->currency}} </span></h3>
                 </div>
                 <div class="col-sm-3">
@@ -205,10 +190,12 @@
               <div class="provider-name">
                 <h3>Provider Name:<span> {{$special->provider}}</span></h3>
               </div><br>
+              @if($special->promo_code != null)
               <div class="offer-link">
-                <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
-
-              </div><br>
+                <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$special->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+              </div>
+              @endif
+              <br>
               <div class="offer-validity">
                 <h4>Offer Validity:</h4>
                 <div class="offer-time">
@@ -250,7 +237,7 @@
               <div class="card-buttons">
                 <div class="row">
                   <div class="col-sm-7">
-                    <a class="card-order" href="{{$special->affiliate_link}}" target="_blank"> Order Now </a>
+                    <a id="order-now-{{$special->id}}" class="card-order" href="{{$special->affiliate_link}}" target="_blank"> Order Now </a>
                   </div>
                   <div class="col-sm-5">
                     <a class="card-details" href="#!"> More Details </a>
@@ -265,7 +252,7 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#!">More Special Offers</a>
+    <a href="{{route('AllSpecialOffer')}}">More Special Offers</a>
   </div>
 </section>
 <section id="regular-offers">
@@ -297,15 +284,7 @@
                 </div>
                 <div class="col-sm-6">
                   <h3>
-                    @if($regular->product_cat == 'Domain')
-                    Domain Offer 
-                    @elseif($regular->product_cat == 'Hosting')
-                    Hosting Offer 
-                    @elseif($regular->product_cat == 'Combo')
-                    Combo Offer
-                    @else
-                    Web-Server Offer
-                    @endif
+                    {{$regular->product_cat}} Offer
                     
                     <br><span> {{$regular->title}} only {{$regular->price}} {{$regular->currency}} </span></h3>
                 </div>
@@ -322,10 +301,12 @@
               <div class="provider-name">
                 <h3>Provider Name:<span> {{$regular->provider}}</span></h3>
               </div><br>
+              @if($regular->promo_code != null)
               <div class="offer-link">
-                <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
-
-              </div><br>
+                <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$regular->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+              </div>
+              @endif
+              <br>
               <div class="offer-validity">
                 <h4>Offer Validity:</h4>
                 <div class="offer-time">
@@ -367,7 +348,7 @@
               <div class="card-buttons">
                 <div class="row">
                   <div class="col-sm-7">
-                    <a class="card-order" href="{{$regular->affiliate_link}}" target="_blank"> Order Now </a>
+                    <a id="order-now-{{$regular->id}}" class="card-order" href="{{$regular->affiliate_link}}" target="_blank"> Order Now </a>
                   </div>
                   <div class="col-sm-5">
                     <a class="card-details" href="#!"> More Details </a>
@@ -382,7 +363,7 @@
     </div>
   </div>
   <div class="offer-button">
-    <a href="#!">More Regular Offers</a>
+    <a href="{{route('AllRegularOffer')}}">More Regular Offers</a>
   </div>
 </section>
 <section id="offers">
@@ -416,20 +397,11 @@
                 </div>
                 <div class="col-sm-6">
                   <h3>
-                    @if($expired->product_cat == 'Domain')
-                    Domain Offer 
-                    @elseif($expired->product_cat == 'Hosting')
-                    Hosting Offer 
-                    @elseif($expired->product_cat == 'Combo')
-                    Combo Offer
-                    @else
-                    Web-Server Offer
-                    @endif
-                    
+                    {{$expired->product_cat}} Offer
                     <br><span> {{$expired->title}} only {{$expired->price}} {{$expired->currency}} </span></h3>
                 </div>
-                <div class="col-sm-3">
-                  <h4><span class="dot"></span> Active</h4>
+                <div class="col-sm-3" style="padding-right: 0px;">
+                  <h4><span class="dot" style="background: red;"></span> Expired</h4>
                 </div>
               </div>
             </div>
@@ -441,10 +413,12 @@
               <div class="provider-name">
                 <h3>Provider Name:<span> {{$expired->provider}}</span></h3>
               </div><br>
+              @if($expired->promo_code != null)
               <div class="offer-link">
                 <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$expired->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
-
-              </div><br>
+              </div>
+              @endif
+              <br>
               <div class="offer-validity">
                 <h4>Offer Validity:</h4>
                 <div class="offer-time">
@@ -475,7 +449,6 @@
 
                   </div>
                 </div>
-
               </div>
               <div class="deal-section">
                 <h4>Deal Price:</h4>
@@ -486,10 +459,10 @@
               <div class="card-buttons">
                 <div class="row">
                   <div class="col-sm-7">
-                    <a class="card-order" href="{{$expired->affiliate_link}}" target="_blank"> Order Now </a>
+                    <a id="order-now-{{$expired->id}}" class="card-order" href="{{$expired->affiliate_link}}" target="_blank"> Order Now </a>
                   </div>
                   <div class="col-sm-5">
-                    <a class="card-details" href="#!"> More Details </a>
+                    <a class="card-details" href="{{url('/product-detail')}}/{{$expired->id}}"> More Details </a>
                   </div>
                 </div>
               </div>
@@ -500,7 +473,7 @@
     </div>
   </div>
   <div class="offer-button" style="margin-bottom: 0px !important;">
-    <a href="#!">More Expired Offers</a>
+    <a href="{{route('AllExpiredOffer')}}">More Expired Offers</a>
   </div>
 </section>
 

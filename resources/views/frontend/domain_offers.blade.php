@@ -3,13 +3,17 @@
   <div class="container">
     <div class="row">
       <div class="page_heading">
-        <h1>Domain Offers</h1><br>
+        <?php 
+        $title2 = explode('-', Request::segment(1));
+        $title = ucfirst($title2[0]);
+        ?>
+        <h1>{{$title}} Offers</h1><br>
       </div>
       <div class="breadcrumb-section">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Domain offers</li>
+            <li class="breadcrumb-item active" aria-current="page">{{$title}} offers</li>
           </ol>
         </nav>
       </div>
@@ -28,16 +32,16 @@
         <div class="col-md-6">
           <ul id="tabsJustified" class="nav nav-tabs">
             <li class="nav-item">
-              <a class="show active" data-target="#all-domain-offers" data-toggle="tab" href="">All Offers</a>
+              <a class="show active" data-target="#all-{{$title}}-offers" data-toggle="tab" href="">All Offers</a>
             </li>
             <li class="nav-item">
-              <a id="exclusive-domain" data-target="#exclusive-domain-offers" data-toggle="tab" href="">Exclusive Offers</a>
+              <a id="exclusive-{{$title}}" data-target="#exclusive-{{$title}}-offers" data-toggle="tab" href="">Exclusive Offers</a>
             </li>
             <li class="nav-item">
-              <a id="special-domain" data-target="#special-domain-offers" data-toggle="tab" href="">Special offers</a>
+              <a id="special-{{$title}}" data-target="#special-{{$title}}-offers" data-toggle="tab" href="">Special offers</a>
             </li>
             <li class="nav-item">
-              <a id="regular-domain" data-target="#regular-domain-offers" data-toggle="tab" href="">Regular Offers</a>
+              <a id="regular-{{$title}}" data-target="#regular-{{$title}}-offers" data-toggle="tab" href="">Regular Offers</a>
             </li>
           </ul>
         </div>
@@ -45,16 +49,16 @@
         </div>
       </div>
       <div id="tabsJustifiedContent" class="tab-content">
-        <div id="all-domain-offers" class="tab-pane fade  active show">
+        <div id="all-{{$title}}-offers" class="tab-pane fade  active show">
           @include('offers.all-domain-offers')
         </div>
-        <div id="exclusive-domain-offers" class="tab-pane fade">
+        <div id="exclusive-{{$title}}-offers" class="tab-pane fade">
           @include('offers.exclusive-domain-offers')
         </div>
-        <div id="special-domain-offers" class="tab-pane fade">
+        <div id="special-{{$title}}-offers" class="tab-pane fade">
           @include('offers.special-domain-offers')
         </div>
-        <div id="regular-domain-offers" class="tab-pane fade">
+        <div id="regular-{{$title}}-offers" class="tab-pane fade">
           @include('offers.regular-domain-offers')
         </div>
       </div>

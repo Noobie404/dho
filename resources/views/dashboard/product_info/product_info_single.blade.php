@@ -132,7 +132,7 @@
 
                                                     for (i = 1; i < x.options.length; i++) {
 
-                                                        if (x.options[i].value == {{$product_info->product_cat}}) {
+                                                        if (x.options[i].value == "{{$product_info->product_cat}}") {
                                                             x.options[i].remove();
                                                         }
                                                     }
@@ -151,7 +151,7 @@
 
                                                     for (i = 1; i < x.options.length; i++) {
 
-                                                        if (x.options[i].value == {{$product_info->offer_cat}}) {
+                                                        if (x.options[i].value == "{{$product_info->offer_cat}}") {
                                                             x.options[i].remove();
                                                         }
                                                     }

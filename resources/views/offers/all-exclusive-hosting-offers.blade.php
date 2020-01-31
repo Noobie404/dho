@@ -1,10 +1,14 @@
-<section id="special-offers" style="background: url(master/img/offer-section.png); background-repeat:no-repeat;background-size:cover;">
+<section id="regular-offers">
   <!-- <div class="offers-back-img">
     <img class="img-fluid" src="assets/img/Group 870.svg" alt="">
 
   </div> -->
   <div class="offer-header">
-    <h1 style="color:#000;">Special Offers</h1>
+    @if(Request::segment(1) == "expired-offer")
+    <h1>Expired Offers</h1>
+    @else
+    <h1>{{$all_offers[0]->offer_cat}} Offers</h1>
+    @endif  
   </div>
   <div class="offers-card">
 
@@ -13,21 +17,25 @@
 
       <div class="row">
       @foreach($all_offers as $all_offer)
-        @if($all_offer->offer_cat == "Special" && $all_offer->product_cat == 'Web-Server')
+        @if($all_offer->product_cat == "Hosting")
           <div class="col-md-4">
               <div class="card">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-sm-3">
-                    <img class="img-fluid" src="{!! asset('master/img/server(1).svg') !!}" alt="">                
+                    <img class="img-fluid" src="{!! asset('master/img/server.svg') !!}" alt="">              
                   </div>
                     <div class="col-sm-6">
                       <h3>
-                      Web-Server Offer 
+                      {{$all_offer->offer_cat}} Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
                     <div class="col-sm-3" style="padding-right: 0;">
+                      @if(Request::segment(1) == "expired-offer")
+                      <h4><span class="dot" style="background: red;"></span> Expired</h4>
+                      @else
                       <h4><span class="dot"></span> Active</h4>
+                      @endif                    
                     </div>
                   </div>
                 </div>
@@ -39,10 +47,12 @@
                   <div class="provider-name">
                     <h3>Provider Name:<span> {{$all_offer->provider}}</span></h3>
                   </div><br>
+                  @if($all_offer->promo_code != null)
                   <div class="offer-link">
-                    <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Get Your Promo Code</a>
-  
-                  </div><br>
+                    <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$all_offer->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+                  </div>
+                  @endif
+                  <br>
                   <div class="offer-validity">
                     <h4>Offer Validity:</h4>
                     <div class="offer-time">
@@ -84,10 +94,10 @@
                   <div class="card-buttons">
                     <div class="row">
                       <div class="col-sm-7">
-                      <a class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
+                      <a id="order-now-{{$all_offer->id}}" class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
                       </div>
                       <div class="col-sm-5">
-                        <a class="card-details" href="#"> More Details </a>
+                        <a class="card-details" href="{{url('/product-detail')}}/{{$all_offer->id}}"> More Details </a>
                       </div>
                     </div>
   

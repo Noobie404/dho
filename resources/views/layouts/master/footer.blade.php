@@ -23,7 +23,7 @@
                 <p>I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth.</p>
               </div>
               <div class="promo-code">
-                <h3>******** <span class="line"></span></h3> <img src="{!! asset('master/img/unlink.svg') !!}" alt="">
+                <h3 id="stars">******** <span class="line"></span></h3> <img src="{!! asset('master/img/unlink.svg') !!}" alt="">
               </div>
               <div class="promo-note">
                 <h2>Thanks For Purchasing!</h2>
@@ -171,12 +171,16 @@ $(".owl-special").owlCarousel({
         todayBtn: true
     });
 </script>
-
 </footer>
-
   </body>
   <script>
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
     function modal_open(id){
+      $("#order-now-"+id)[0].click();
         $.ajax({
 
             url: '/promo-code',
@@ -188,15 +192,9 @@ $(".owl-special").owlCarousel({
             dataType: 'json',
             success: function(response) { 
 
-                $('#cus-order-table').empty();
-                var len = response.length;
-                    
-                    //$("#cus-order-table").append('');
-              
-        // loadjscssfile("/master/css/bootstrap4-toggle.min.css", "css");
-            }
-
-            
+                $('#stars').empty();                    
+                $("#stars").append(' ' + response['promo_code'] + ' ');
+          }
         });
     }
   </script>

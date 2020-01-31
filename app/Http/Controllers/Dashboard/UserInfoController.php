@@ -24,7 +24,7 @@ class UserInfoController extends Controller
 
     public function user_dashboard()
     {
-        $all_offers = DB::table('offers')->select('id','product_id','title','product_cat','offer_cat','offer_end','status')->where('user_id', Auth::user()->id)->get();
+        $all_offers = DB::table('offers')->select('id','product_id','title','product_cat','offer_cat','offer_end','status','visible')->where('user_id', Auth::user()->id)->get();
         return view('frontend.dashboard',compact('all_offers'));
     }
 

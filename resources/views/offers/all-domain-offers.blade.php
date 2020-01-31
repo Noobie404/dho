@@ -7,24 +7,29 @@
     <h1>Exclusive Offers</h1>
   </div>
   <div class="offers-card">
-
-
     <div class="container">
-
       <div class="row">
         <div id="owl-demo" class="owl-carousel owl-theme">
         @foreach($all_offers as $all_offer)
-        @if($all_offer->offer_cat == "Exclusive" && $all_offer->product_cat == 'Domain')
+        @if($all_offer->offer_cat == "Exclusive")
           <div class="col-md-12 items">
             <div class="card">
               <div class="card-header">
                 <div class="row">
                   <div class="col-sm-3">
-                  <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">                
+                  @if($all_offer->product_cat == 'Domain')
+                  <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">
+                  @elseif($all_offer->product_cat == 'Hosting')
+                  <img class="img-fluid" src="{!! asset('master/img/server.svg') !!}" alt="">
+                  @elseif($all_offer->product_cat == 'Combo')
+                  <img class="img-fluid" src="{!! asset('master/img/icon.svg') !!}" alt="">
+                  @else
+                  <img class="img-fluid" src="{!! asset('master/img/server(1).svg') !!}" alt="">
+                  @endif                 
                  </div>
                   <div class="col-sm-6">
                     <h3>
-                    Domain Offer 
+                    {{$all_offer->offer_cat}} Offer 
                     <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                   </div>
                   <div class="col-sm-3" style="padding-right: 0;">
@@ -40,10 +45,12 @@
                 <div class="provider-name">
                   <h3>Provider Name:<span> {{$all_offer->provider}}</span></h3>
                 </div><br>
+                @if($all_offer->promo_code != null)
                 <div class="offer-link">
-                  <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Get Your Promo Code</a>
-
-                </div><br>
+                  <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$all_offer->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+                </div>
+                @endif
+                <br>
                 <div class="offer-validity">
                   <h4>Offer Validity:</h4>
                   <div class="offer-time">
@@ -85,10 +92,10 @@
                 <div class="card-buttons">
                   <div class="row">
                     <div class="col-sm-7">
-                    <a class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
+                    <a id="order-now-{{$all_offer->id}}" class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
                     </div>
                     <div class="col-sm-5">
-                      <a class="card-details" href="#"> More Details </a>
+                      <a class="card-details" href="{{url('/product-detail')}}/{{$all_offer->id}}"> More Details </a>
                     </div>
                   </div>
 
@@ -105,11 +112,11 @@
     </div>
   </div>
   <div class="offer-button" style="padding-bottom:100px;">
-    <a id="exclusive-domain-more" href="javascript:void(0)">More Exclusive Offers</a>
+    <a id="exclusive-{{$title}}-more" href="javascript:void(0)">More Exclusive Offers</a>
   </div>
   <script>
-    $("#exclusive-domain-more").click(function(){
-      $('#exclusive-domain')[0].click();
+    $("#exclusive-{{$title}}-more").click(function(){
+      $('#exclusive-{{$title}}')[0].click();
     }); 
   </script>
 </section>
@@ -129,17 +136,25 @@
       <div class="row">
         <div id="owl-demo" class="owl-carousel owl-theme owl-special">
           @foreach($all_offers as $all_offer)
-          @if($all_offer->offer_cat == "Special" && $all_offer->product_cat == 'Domain')
+          @if($all_offer->offer_cat == "Special")
             <div class="col-md-12 items">
               <div class="card">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-sm-3">
-                    <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">                
-                  </div>
+                    @if($all_offer->product_cat == 'Domain')
+                    <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">
+                    @elseif($all_offer->product_cat == 'Hosting')
+                    <img class="img-fluid" src="{!! asset('master/img/server.svg') !!}" alt="">
+                    @elseif($all_offer->product_cat == 'Combo')
+                    <img class="img-fluid" src="{!! asset('master/img/icon.svg') !!}" alt="">
+                    @else
+                    <img class="img-fluid" src="{!! asset('master/img/server(1).svg') !!}" alt="">
+                    @endif                
+                    </div>
                     <div class="col-sm-6">
                       <h3>
-                      Domain Offer 
+                      {{$all_offer->offer_cat}} Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
                     <div class="col-sm-3" style="padding-right: 0;">
@@ -155,10 +170,12 @@
                   <div class="provider-name">
                     <h3>Provider Name:<span> {{$all_offer->provider}}</span></h3>
                   </div><br>
+                  @if($all_offer->promo_code != null)
                   <div class="offer-link">
-                    <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Get Your Promo Code</a>
-
-                  </div><br>
+                    <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$all_offer->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+                  </div>
+                  @endif
+                  <br>
                   <div class="offer-validity">
                     <h4>Offer Validity:</h4>
                     <div class="offer-time">
@@ -200,10 +217,10 @@
                   <div class="card-buttons">
                     <div class="row">
                       <div class="col-sm-7">
-                      <a class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
+                      <a id="order-now-{{$all_offer->id}}" class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
                       </div>
                       <div class="col-sm-5">
-                        <a class="card-details" href="#"> More Details </a>
+                        <a class="card-details" href="{{url('/product-detail')}}/{{$all_offer->id}}"> More Details </a>
                       </div>
                     </div>
 
@@ -222,11 +239,11 @@
     </div>
   </div>
   <div class="offer-button" style="padding-bottom:100px;">
-    <a id="special-domain-more" href="javascript:void(0)">More Special Offers</a>
+    <a id="special-{{$title}}-more" href="javascript:void(0)">More Special Offers</a>
   </div>
   <script>
-    $("#special-domain-more").click(function(){
-      $('#special-domain')[0].click();
+    $("#special-{{$title}}-more").click(function(){
+      $('#special-{{$title}}')[0].click();
     }); 
   </script>
 </section>
@@ -246,17 +263,25 @@
       <div class="row">
         <div id="owl-demo" class="owl-carousel owl-theme">
           @foreach($all_offers as $all_offer)
-          @if($all_offer->offer_cat == "Regular" && $all_offer->product_cat == 'Domain')
+          @if($all_offer->offer_cat == "Regular")
             <div class="col-md-12 items">
               <div class="card">
                 <div class="card-header">
                   <div class="row">
                     <div class="col-sm-3">
-                    <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">                
+                    @if($all_offer->product_cat == 'Domain')
+                    <img class="img-fluid" src="{!! asset('master/img/world-wide-web.svg') !!}" alt="">
+                    @elseif($all_offer->product_cat == 'Hosting')
+                    <img class="img-fluid" src="{!! asset('master/img/server.svg') !!}" alt="">
+                    @elseif($all_offer->product_cat == 'Combo')
+                    <img class="img-fluid" src="{!! asset('master/img/icon.svg') !!}" alt="">
+                    @else
+                    <img class="img-fluid" src="{!! asset('master/img/server(1).svg') !!}" alt="">
+                    @endif                 
                   </div>
                     <div class="col-sm-6">
                       <h3>
-                      Domain Offer 
+                      {{$all_offer->offer_cat}} Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
                     <div class="col-sm-3" style="padding-right: 0;">
@@ -272,10 +297,12 @@
                   <div class="provider-name">
                     <h3>Provider Name:<span> {{$all_offer->provider}}</span></h3>
                   </div><br>
+                  @if($all_offer->promo_code != null)
                   <div class="offer-link">
-                    <a data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Get Your Promo Code</a>
-
-                  </div><br>
+                    <a data-toggle="modal" data-target="#exampleModal" id="modal-open" onclick="modal_open({{$all_offer->id}})" data-whatever="@mdo" href="javascript:void(0)">Get Your Promo Code</a>
+                  </div>
+                  @endif
+                  <br>
                   <div class="offer-validity">
                     <h4>Offer Validity:</h4>
                     <div class="offer-time">
@@ -317,10 +344,10 @@
                   <div class="card-buttons">
                     <div class="row">
                       <div class="col-sm-7">
-                      <a class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
+                      <a id="order-now-{{$all_offer->id}}" class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
                       </div>
                       <div class="col-sm-5">
-                        <a class="card-details" href="#"> More Details </a>
+                        <a class="card-details" href="{{url('/product-detail')}}/{{$all_offer->id}}"> More Details </a>
                       </div>
                     </div>
 
@@ -334,15 +361,14 @@
           @endforeach
         </div>
       </div>
-
     </div>
   </div>
   <div class="offer-button" style="padding-bottom:100px;">
-    <a id="regular-domain-more" href="javascript:void(0)">More Regular Offers</a>
+    <a id="regular-{{$title}}-more" href="javascript:void(0)">More Regular Offers</a>
   </div>
   <script>
-    $("#regular-domain-more").click(function(){
-      $('#regular-domain')[0].click();
+    $("#regular-{{$title}}-more").click(function(){
+      $('#regular-{{$title}}')[0].click();
     }); 
   </script>
 </section>

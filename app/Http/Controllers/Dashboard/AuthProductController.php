@@ -75,7 +75,8 @@ class AuthProductController extends Controller
             'user_id' => $old_data->user_id,
             'user_type' => "admin",
             'status' => $old_data->status,
-            'created_at'=>date('Y-m-d h:i:s')
+            'visible' => $old_data->visible,
+            'created_at'=>date('Y-m-d H:i:s')
         ];
 
         $new_data= [
@@ -112,10 +113,13 @@ class AuthProductController extends Controller
 
     public function promo_code_append(Request $request)
     {
-        echo '<pre>'; 
-        echo '======================<br>';
-        print_r($request);
-        echo '<br>======================';
-        exit();
+        $promo_code = DB::table('offers')->select('promo_code')->where('id',$request->id)->first();
+        echo json_encode($promo_code);
+    }
+
+    public function product_detail($id)
+    {
+        $product_info = DB::table('offers')->where('id', $id)->first();
+        return view('frontend.product_details',compact('product_info'));
     }
 }

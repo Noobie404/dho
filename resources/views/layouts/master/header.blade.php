@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Domain Hosting Offers</title>
   <link rel="icon" type="image/png" href="{!! asset('master/img/logo.png') !!}">
 
@@ -60,7 +61,7 @@
                   <li class="nav-item"style="float:right;">
                           @if(null == Auth::user())
                           <a href="{{route('login')}}" class="nav-link"style="float:left; margin-right:5px;">Log in</a>
-                          <a href="#" class="nav-link"style="float:right;margin-left:5px;">Sign up</a>
+                          <a href="{{route('sign-up')}}" class="nav-link"style="float:right;margin-left:5px;">Sign up</a>
                           
                           </a>
                           @else

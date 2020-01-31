@@ -27,33 +27,36 @@ class HomeController extends Controller
             $start_date = date_validate(date('Y-m-d'));
 
         $exlusive_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
             ->where('offer_cat','Exclusive')
             ->where('status','active')
+            ->where('visible','on')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->take(3)
             ->get();
         $special_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
             ->where('offer_cat','Special')
             ->where('status','active')
+            ->where('visible','on')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->take(3)
             ->get();
         $regular_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
             ->where('offer_cat','Regular')
             ->where('status','active')
+            ->where('visible','on')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->take(3)
             ->get();
         $expired_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
-            ->where('offer_cat','Regular')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
             ->where('status','active')
+            ->where('visible','on')
             ->where("offer_end","<",$start_date . " 00:00:00")
             ->orderBy('created_at', 'DESC')
             ->take(3)
@@ -64,8 +67,9 @@ class HomeController extends Controller
     {
         $start_date = date_validate(date('Y-m-d'));
         $all_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
             ->where('status','active')
+            ->where('visible','on')
             ->where('product_cat','Domain')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
@@ -76,41 +80,100 @@ class HomeController extends Controller
     {
         $start_date = date_validate(date('Y-m-d'));
         $all_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
             ->where('status','active')
+            ->where('visible','on')
             ->where('product_cat','Hosting')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->get();
-        return view('frontend.hosting_offers',compact('all_offers'));
+        return view('frontend.domain_offers',compact('all_offers'));
     }
     public function combo_offer()
     {
         $start_date = date_validate(date('Y-m-d'));
         $all_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
             ->where('status','active')
+            ->where('visible','on')
             ->where('product_cat','Combo')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->get();
-        return view('frontend.combo_offers',compact('all_offers'));
+        return view('frontend.domain_offers',compact('all_offers'));
     }
     public function webserver_offer()
     {
         $start_date = date_validate(date('Y-m-d'));
         $all_offers = DB::table("offers")
-            ->select('id','product_id','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
             ->where('status','active')
+            ->where('visible','on')
             ->where('product_cat','Web-Server')
             ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
             ->orderBy('created_at', 'DESC')
             ->get();
-        return view('frontend.web_offers',compact('all_offers'));
+        return view('frontend.domain_offers',compact('all_offers'));
     }
-    public function submit_offer()
+    public function all_exclusive_offer()
     {
-        return view('frontend.submit_offer');
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('visible','on')
+            ->where('offer_cat','Exclusive')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.more_offers',compact('all_offers'));
+    }
+    public function all_special_offer()
+    {
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('visible','on')
+            ->where('offer_cat','Special')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.more_offers',compact('all_offers'));
+    }
+    public function all_regular_offer()
+    {
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('visible','on')
+            ->where('offer_cat','Regular')
+            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.more_offers',compact('all_offers'));
+    }
+    public function all_expired_offer()
+    {
+        $start_date = date_validate(date('Y-m-d'));
+        $all_offers = DB::table("offers")
+            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
+            ->where('status','active')
+            ->where('visible','on')
+            ->where("offer_end","<",$start_date . " 00:00:00")
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('frontend.more_offers',compact('all_offers'));
+    }
+    public function submit_offer($id = null)
+    {
+        $single_offer = DB::table("offers")
+            ->select('id','promo_code','product_link','price','title','sub_title','provider','offer_note','offer_start','offer_end','currency','product_cat','offer_cat','visible','description')
+            ->where('user_id', Auth::user()->id)
+            ->where('id', $id)
+            ->first();
+        return view('frontend.submit_offer', compact('single_offer'));
     }
 
 

@@ -13,6 +13,10 @@ Route::get("/","HomeController@index_page")->name("/");
     Route::get("hosting-offer","HomeController@hosting_offer")->name("HostingOffer");
     Route::get("combo-offer","HomeController@combo_offer")->name("CombogOffer");
     Route::get("webserver-offer","HomeController@webserver_offer")->name("WebservergOffer");
+    Route::get("exclusive-offer","HomeController@all_exclusive_offer")->name("AllExclusiveOffer");
+    Route::get("special-offer","HomeController@all_special_offer")->name("AllSpecialOffer");
+    Route::get("regular-offer","HomeController@all_regular_offer")->name("AllRegularOffer");
+    Route::get("expired-offer","HomeController@all_expired_offer")->name("AllExpiredOffer");
     //login form
     Route::get('sign-in', 'Auth\LoginController@showLoginForm')->name('login');
     //register form
@@ -22,13 +26,16 @@ Route::get("/","HomeController@index_page")->name("/");
     //login action
     Route::post("user-login","AuthLoginController@login")->name("user.login");
     Route::post("promo-code","Dashboard\AuthProductController@promo_code_append");
+    Route::get("product-detail/{id}","Dashboard\AuthProductController@product_detail");
 
     Route::group(['middleware' => 'check_user_access','auth'], function () {
 
-        Route::get("submit-offer","HomeController@submit_offer")->name("SubmitOffer");
+        Route::get("submit-offer/{id?}","HomeController@submit_offer")->name("SubmitOffer");
         Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
         //user Logout action
         Route::post('user-logout', 'AuthLoginController@logout')->name("user.logout");
+        Route::post('put-on-hold', 'OfferController@putonhold')->name("put-on-hold");
+        Route::post('offer-delete', 'OfferController@offer_delete')->name("offer-delete");
         Route::get('user-dashboard', 'Dashboard\UserInfoController@user_dashboard')->name('Userdashboard');
 
     });
