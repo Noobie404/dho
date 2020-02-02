@@ -69,7 +69,7 @@
                           {{Auth::user()->username}}
                           
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="float:right;">
-                            <!-- <a class="dropdown-item" href="dashboard.php">My Account</a> -->
+                            <a class="dropdown-item" href="{{route('Account')}}">My Account</a>
                             <a class="dropdown-item" href="{{route('Userdashboard')}}">Offer Management</a>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a>

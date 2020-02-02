@@ -31,6 +31,9 @@ Route::get("/","HomeController@index_page")->name("/");
     Route::group(['middleware' => 'check_user_access','auth'], function () {
 
         Route::get("submit-offer/{id?}","HomeController@submit_offer")->name("SubmitOffer");
+        Route::get("account","HomeController@account_info")->name("Account");
+        Route::post("update-user","HomeController@update_user_info")->name("UpdateUser");
+        Route::post("update-passrord","HomeController@Update_password")->name("UpdatePassword");
         Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
         //user Logout action
         Route::post('user-logout', 'AuthLoginController@logout')->name("user.logout");
@@ -46,6 +49,8 @@ Route::get("/","HomeController@index_page")->name("/");
         Route::get('user-list', 'Dashboard\UserInfoController@user_info')->name('UserList');
         Route::get('product-list/{id?}', 'Dashboard\AuthProductController@product_info')->name('ProductList');
         Route::post('product-list-dt', 'Dashboard\AuthProductController@product_info_dt');
+        Route::get('expired-product-list', 'Dashboard\AuthProductController@ExpiredProductList')->name('ExpiredProductList');
+        Route::post('expired-product-list-dt', 'Dashboard\AuthProductController@expired_product_info_dt');
         Route::get('single-product-info/{id}', 'Dashboard\AuthProductController@product_info_single');
         Route::post('single-product-info', 'Dashboard\AuthProductController@auth_edit_offer')->name('AuthEditOffer');
     

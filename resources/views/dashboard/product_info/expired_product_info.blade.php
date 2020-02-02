@@ -1,4 +1,4 @@
-@section('UserList', 'mm-active')
+@section('ExpiredProductList', 'mm-active')
 @include('layouts.header')
 @include('layouts.sidebar')
 <!-- Dashboard Header  section -->
@@ -13,7 +13,7 @@
                             <span class="d-inline-block pr-2">
                                 <i class="lnr-apartment opacity-6"></i>
                             </span>
-                            <span class="d-inline-block">All User Details</span>
+                            <span class="d-inline-block">Expired Product List</span>
                         </div>
                         <div class="page-title-subheading opacity-10">
                             <nav class="" aria-label="breadcrumb">
@@ -27,7 +27,7 @@
                                         <a>Dashboards</a>
                                     </li>
                                     <li class="active breadcrumb-item" aria-current="page">
-                                        Filter User Information
+                                        Filter Expired Products
                                     </li>
                                 </ol>
                             </nav>
@@ -52,11 +52,12 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Username</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Mobile</th>
-                            <th>Products</th>
+                            <th>Product ID</th>
+                            <th>Title</th>
+                            <th>Offer Start</th>
+                            <th>Offer End</th>
+                            <th>Category</th>
+                            <th>Status</th>
                             <th>Created At</th>
                             <th>
                                 <center>Action</center>
@@ -73,15 +74,34 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Details</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Send Message</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="modal-body2">
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <label for="title" class="">Guest Name</label>
+                        <input name="name" id="name" placeholder="Name" type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="title" class="">Mobile Number</label>
+                        <input name="number" id="number" placeholder="Mobile number" value="" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="position-relative form-group">
+                            <label for="Description" class="">Message</label>
+                            <textarea class="form-control" id="message" name="message"></textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer" style="display: flex;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" data-dismiss="modal" onclick="message_sent()" class="btn btn-primary">Send</button>
             </div>
         </div>
     </div>
@@ -93,7 +113,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
-<script type="text/javascript" src=https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
 <script src="{!! asset('js/sweetalert.min.js') !!}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -108,15 +127,16 @@
                 ordering: true,
                 info: true,
                 autoWidth: false,
-                dom: 'lfBrtip',
+                dom: 'l<"#date-filter"><"#category-filter"><"#action-filter">fBrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
                 ajax: {
-                    url: 'user_info_datatable',
+                    url: '/expired-product-list-dt',
                     type: 'POST',
                     data: function(d) {
                         d._token = "{{ csrf_token() }}";
+                        d.user_id = "{{ Request::segment(2) }}";
                     }
                 },
                 columns: [
@@ -129,42 +149,56 @@
                         }
                     },
                     {
-                        data: 'username',
-                        name: 'username',
-                        id: 'id',
-                        searchable: true,
-                        render: function(data, type, row) {
-                                return "<a href='product-list/"+row.id+"' target='_blank'>"+data+"</a>";
-                            
-                        }
-                    },
-                    {
-                        data: 'fullname',
-                        name: 'fullname',
-                        searchable: true,
-                    },
-                    {
-                        data: 'email',
-                        name: 'email',
+                        data: 'product_id',
+                        name: 'product_id',
                         searchable: true
                     },
                     {
-                        data: 'mobile',
-                        name: 'mobile',
-                        mobile: 'mobile',
+                        data: 'title',
+                        name: 'title',
+                        searchable: true
+                    },
+                    {
+                        data: 'offer_start',
+                        name: 'offer_start',
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return moment(row.offer_start).format("MMMM Do YYYY, h:mm:ss A");
+                        }
+                    },
+                    {
+                        data: 'offer_end',
+                        name: 'offer_end',
+                        searchable: false,
+                        render: function(data, type, row) {
+                            return moment(row.offer_end).format("MMMM Do YYYY, h:mm:ss A");
+                        }
+                    },
+                    {
+                        data: 'product_cat',
+                        name: 'product_cat',
+                        searchable: true
+                    },
+                    {
+                        data: 'status',
+                        name: 'status',
+                        end_date: 'end_date',
                         searchable: true,
                         render: function(data, type, row) {
-                            if (row.mobile == null) {
-                                return "---";
-                            }else{
-                                return data;
+                            var compareTo = moment(row.end_date).unix(Number);
+                            var CurrentDate = moment().unix(Number);
+                            var isAfter = moment(CurrentDate).isAfter(compareTo);
+
+                            if(data == "cancel"){
+                                    return '<div class="badge badge-pill badge-warning">Cancel</div>'
+                            }else if (CurrentDate > compareTo || row.status == "pending") {
+                                    return '<div class="badge badge-pill badge-warning">Pending</div>'
+                            }else if (CurrentDate > compareTo || row.status == "active") {
+                            return '<div class="badge badge-pill badge-success">Active</div>'
+                            }else {
+                            return '<div class="badge badge-pill badge-danger">Expire</div>'
                             }
                         }
-                    },
-                    {
-                        data: 'total_product',
-                        name: 'total_product',
-                        searchable: true
                     },
                     {
                         data: 'created_at',
@@ -176,19 +210,20 @@
                     },
                     {
                         data: 'id',
-                        status: 'status',
+                        id: 'id',
                         searchable: false,
                         render: function(data, type, row) {
-                            if (row.status == 1) {
-                                return "<a href='javascript:void(0)'data-toggle='modal' data-target='#sms_send' onclick='user_details("+ data + ")' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-danger btn-sm'>Suspend</a>";
-                            }else{
-                                return "<a href='javascript:void(0)'data-toggle='modal' data-target='#sms_send' onclick='user_details(" + data + ")' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-warning btn-sm'>Unspend</a>";
-                            }
+                            return "<a href='/single-product-info/" + row.id + "' class='btn-hover-shine btn-shadow btn btn-warning btn-sm' target='_blank'>Detils</a>";
+                            /* if (row.status == 2) {
+                                return "<a href='approve/" + row.id + "/approve' class='btn-shadow btn btn-info'>Approve</a><a href='approve/" + row.id + "/decline' class='btn-shadow btn btn-danger'>Decline</a>";
+                                moment(dateString,"MMMM Do YYYY, h:mm a").toDate();
+                            } else {
+                                return '<center><i class="fa fa-remove m--font-danger"></i></center>';
+                            } */
                         }
                     },
                 ]
             });
-
         $("table").wrapAll("<div style='overflow-x:auto;width:100%' />");
         $('.dataTables_wrapper').addClass('row');
         // $('.dataTables_processing').addClass('m-loader m-loader--brand');
@@ -197,12 +232,53 @@
         $('#date-filter').addClass('col-lg-4 col-md-4 col-sm-4 adjust');
         $('#action-filter').addClass('col-lg-2 col-md-2 col-sm-2');
         $('#category-filter').addClass('col-lg-2 col-md-2 col-sm-2');
-        $('#process_data_table_filter').addClass('offset-md-7 col-lg-2 col-md-2 col-sm-2');
+        $('#process_data_table_filter').addClass('col-lg-2 col-md-2 col-sm-2');
         $('#process_data_table_filter input').addClass('form-control form-control-sm');
+
         $('div.dt-buttons').css({
             "position": "absolute",
             "right": "0",
             "top": "-44px"
+        });
+        var action_filter_html = '<select class="form-control-sm form-control" id="event_status" data-select2-id="2" tabindex="-1" aria-hidden="true">' +
+            '<option value="">Select Status</option>' +
+            '<option value="active">Active</option>' +
+            '<option value="cancel">Cancel</option>' +
+            '<option value="pending">Pending</option>' +
+            // '<option value="Expired">Expired</option>' +
+            '</select>'; 
+        $('#action-filter').append(action_filter_html);
+
+        $('#event_status').on('change', function() {
+            var event_status = $(this).val();
+            if (event_status != "") {
+                table.columns(6).search(event_status).draw();
+            }
+        });
+        var date_picker_html = '<div id="date_range" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;"> <i class="fa fa-calendar"> </i>&nbsp; <span> </span> <i class="fa fa-caret-down"></i></div>';
+        $('#date-filter').append(date_picker_html);
+        $(function() {
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+            function cb(start, end) {
+                $('#date_range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                var range = start.format("YYYY-MM-DD") + "~" + end.format("YYYY-MM-DD");
+                table.columns(3).search(range).draw();
+                //alert(range);
+            }
+            $('#date_range').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+            $('#date_range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         });
     });
     $.ajaxSetup({
@@ -210,58 +286,31 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    var category_filter_html = '<table id="tablet" class="table table-striped table-bordered" style="width:100%; text-align: center;"><thead> <tr><th>Address</th><th>Country</th><th>Organization</th><th>Events</th></tr></thead><tbody id="response_show_users"></tbody></table>'; 
-
-    function user_details(id) {
-        $.ajax({
-            url: '/auth-user-info',
-            type: 'post',
-            data: {
-                id: id,
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-            },
-            dataType: 'json',
-            success: function(response) {
-
-                $('#modal-body2').empty();
-                $("#modal-body2").append(category_filter_html);
-                $('#exampleModalLongTitle').empty();
-                $("#exampleModalLongTitle").append(response['fullname']+' Details');
-
-                var address = response['address'] == null ? "---" : response['address'];
-                var country = response['country'] == null ? "---" : response['country'];
-                var organization = response['organization'] == null ? "---" : response['organization'];
-
-                $("#response_show_users").append('<tr id="rem"><td nowrap>' + address + '</td><td nowrap>' + country + '</td><td>' + organization + '</td><td>'+response['event_count']+'</td></tr>');
-            }
-        });
+    function sms_pop_up(number, name) {
+        $('#number').val(number);
+        $('#name').val(name);
+        $('#message').val('');
     }
-
-    function suspend_user(id,status) {
+    function message_sent() {
+        var number = $('#number').val();
+        var message = $('#message').val();
         $.ajax({
-            url: '/suspend-user',
+            url: 'message-send',
             type: 'post',
             data: {
-                id: id,
-                status: status,
-                '_token': $('meta[name="csrf-token"]').attr('content'),
+                number: number,
+                message: message,
             },
             dataType: 'json',
             success: function(response) {
-                if (response == 1) {
-                    swal("Action  successfully done", {
+                if (response) {
+                    swal("Message Sent Successfully", {
                         icon: "success",
                     });
-                    window.setTimeout(function(){ 
-                        location.reload();
-                    } ,3000);
                 } else {
-                    swal("Error !", {
+                    swal("Message Send Error !", {
                         icon: "error",
                     });
-                    window.setTimeout(function(){ 
-                        location.reload();
-                    } ,3000);
                 }
             }
         });

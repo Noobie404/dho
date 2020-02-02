@@ -16,13 +16,18 @@
                     <i class="metismenu-icon pe-7s-note2"></i>
                     Product List
                 </a>
+                <a href="{{route('ExpiredProductList')}}" aria-expanded="true" class="@yield('ExpiredProductList')">
+                    <!-- <a href="javascript:void(0)" aria-expanded="true" id="coming_soon"> -->
+                    <i class="metismenu-icon pe-7s-note2"></i>
+                    Expired Product List
+                </a>
             </li>
-            <li class="app-sidebar__heading">Payment Information</li>
+            <!-- <li class="app-sidebar__heading">Payment Information</li>
             <li>
-                <!-- <a href="javascript:void(0)" aria-expanded="true" id="coming_soon3">
+                <a href="javascript:void(0)" aria-expanded="true" id="coming_soon3">
                     <i class="metismenu-icon pe-7s-bell"></i>
                     Pending Payment
-                </a> -->
+                </a>
                 <a href="{{url('withdraw-history')}}" aria-expanded="true">
                     <i class="metismenu-icon pe-7s-cash"></i>
                     Withdraw History
@@ -35,7 +40,7 @@
                     <i class="metismenu-icon pe-7s-mail"></i>
                     SMS Balance History
                 </a>
-            </li>
+            </li> -->
 
             @endif
         </ul>

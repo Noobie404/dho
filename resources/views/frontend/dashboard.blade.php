@@ -18,23 +18,7 @@
         </div>
     </div>
 </section>
-<?php 
 
-    $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://enews-api.ezzyr.xyz/api/get_category_index/?api_key=cda11IL1pchVgmX08Eij4UnbaRzMKSGFZ2NsDQHluOWy5w37er",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,        
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-        ));
-
-        $json = curl_exec($curl);
-        $result = json_decode($json);
-        
-?>
 <section id="tabs" class="project-tab">
     <div class="container">
         <div class="row">

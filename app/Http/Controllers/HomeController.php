@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Requests\UserUpdateRequest;
 
 class HomeController extends Controller
 {
@@ -174,6 +175,50 @@ class HomeController extends Controller
             ->where('id', $id)
             ->first();
         return view('frontend.submit_offer', compact('single_offer'));
+    }
+    public function account_info()
+    {
+        $user_info = DB::table('users')->select('id','mobile','fullname','email','username','country','organization','address','post_code','city')->where('id', Auth::user()->id)->first();
+        return view('frontend.account',compact('user_info'));
+    }
+
+    public function update_user_info(UserUpdateRequest $request)
+    {
+        $update_data=[
+            "fullname"=> $request->fullname,
+            "mobile"=> $request->mobile,
+            "address"=> $request->address,
+            "city"=> $request->city,
+            "post_code"=> $request->post_code,
+            "country"=>$request->country,
+        ];
+
+        try {
+            DB::table('users')->where('id', Auth::user()->id)->update($update_data);
+            return redirect()->back()->with('flashMessageSuccess', "Your Account Information Updated.");
+        } catch (\Exception $th) {
+            
+        return redirect()->back()->with('flashMessageDanger', $th->getMessage());
+        }
+    }
+
+    public function Update_password(Request $request){
+
+        $user_credentials = array('email'=> Auth::user()->email, 'password' => $request->old_password);
+
+        if (Auth::attempt($user_credentials)) {
+     
+            try {
+                DB::table('users')->where('id', Auth::user()->id)->update(['password' => bcrypt($request->new_password)]);
+                return redirect()->back()->with('flashMessageSuccess', 'Password Updated Succesfully ! Now login With New Password.'); 
+            } catch (\Exception $th) {
+                return redirect()->back()->with('flashMessageDanger', $th->getMessage()); 
+            }
+        
+        }else{
+            return redirect()->back()->with('flashMessageDanger',"Old password did not match ! Try again or do forget password.");
+        }
+
     }
 
 

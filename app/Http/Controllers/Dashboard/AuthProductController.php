@@ -35,6 +35,35 @@ class AuthProductController extends Controller
         $dataSet = DB::table("offers")
             ->select('id','product_id','title','offer_start','offer_end','created_at','product_cat','status')
             ->whereBetween('created_at', [$start_date . " 00:00:00", $end_date . " 23:59:59"])
+            ->where('offer_end', '>' ,$end_date . " 00:00:00")
+            ->orderBy('created_at', 'DESC');
+            if ($request->user_id != null) {
+                $dataSet->where('offers.user_id', $request->user_id);
+            }
+        return Datatables::of($dataSet)->make(true);
+    }
+
+    public function ExpiredProductList()
+    {
+        return view('dashboard.product_info.expired_product_info');
+    }
+
+    public function expired_product_info_dt(Request $request)
+    {
+        $date = $request->get('columns')[3]['search']['value'];
+        if ($date != '') {
+            list($start_date, $end_date) = explode('~', preg_replace('/\s+/', '', $date));
+            $start_date = date_validate($start_date);
+            $end_date = date_validate($end_date);
+        } else {
+            $time = strtotime(date('Y-m-d') . '-365 days');
+            $start_date = date_validate(date('Y-m-d', $time));
+            $end_date = date_validate(date('Y-m-d'));
+        }
+        $dataSet = DB::table("offers")
+            ->select('id','product_id','title','offer_start','offer_end','created_at','product_cat','status')
+            ->whereBetween('created_at', [$start_date . " 00:00:00", $end_date . " 23:59:59"])
+            ->where('offer_end', '<' ,$end_date . " 00:00:00")
             ->orderBy('created_at', 'DESC');
             if ($request->user_id != null) {
                 $dataSet->where('offers.user_id', $request->user_id);
