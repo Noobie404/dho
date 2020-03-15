@@ -38,7 +38,7 @@
 											</div>
 											<div class="lr-text">
 												<h2>Register Now</h2>
-												<p>Domain Hosting Offer is a brand of Innovadeus Pvt Ltd.</p>
+												<!-- <p>Domain Hosting Offer is a brand of Innovadeus Pvt Ltd.</p> -->
 											</div>
 										</div>
 									</div>

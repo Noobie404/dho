@@ -36,7 +36,7 @@
                                             </div>
                                             <div class="lr-text">
                                                 <h2>Domain Hosting Offer</h2>
-                                                <p>Domain Hosting Offer a brand of Innovadeus Pvt Ltd.</p>
+                                                <!-- <p>Domain Hosting Offer a brand of Innovadeus Pvt Ltd.</p> -->
                                             </div>
                                         </div>
                                     </div>

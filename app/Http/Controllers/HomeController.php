@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -28,41 +29,41 @@ class HomeController extends Controller
             $start_date = date_validate(date('Y-m-d'));
 
         $exlusive_offers = DB::table("offers")
-            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
-            ->where('offer_cat','Exclusive')
-            ->where('status','active')
-            ->where('visible','on')
-            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
-            ->orderBy('created_at', 'DESC')
-            ->take(3)
+            ->join('users', 'users.id', 'offers.user_id')
+            ->select('offers.id','offers.product_id','offers.promo_code','offers.price','offers.title','offers.sub_title','offers.provider','offers.offer_note','offers.offer_start','offers.offer_end','offers.created_at','offers.currency','offers.affiliate_link','offers.product_cat','offers.status')
+            ->where('offers.offer_cat','Exclusive')
+            ->where('offers.status','active')
+            ->where('offers.visible','on')
+            ->where('users.status', 1)
+            ->whereBetween('offers.offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('offers.created_at', 'DESC')
+            ->take(12)
             ->get();
         $special_offers = DB::table("offers")
-            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
-            ->where('offer_cat','Special')
-            ->where('status','active')
-            ->where('visible','on')
-            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
-            ->orderBy('created_at', 'DESC')
-            ->take(3)
+            ->join('users', 'users.id', 'offers.user_id')
+            ->select('offers.id','offers.product_id','offers.promo_code','offers.price','offers.title','offers.sub_title','offers.provider','offers.offer_note','offers.offer_start','offers.offer_end','offers.created_at','offers.currency','offers.affiliate_link','offers.product_cat','offers.status')
+            ->where('offers.offer_cat','Special')
+            ->where('offers.status','active')
+            ->where('offers.visible','on')
+            ->where('users.status', 1)
+            ->whereBetween('offers.offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('offers.created_at', 'DESC')
+            ->take(12)
             ->get();
+
         $regular_offers = DB::table("offers")
-            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
-            ->where('offer_cat','Regular')
-            ->where('status','active')
-            ->where('visible','on')
-            ->whereBetween('offer_end', [$start_date . " 00:00:00", "offer_end"])
-            ->orderBy('created_at', 'DESC')
-            ->take(3)
+            ->join('users', 'users.id', 'offers.user_id')
+            ->select('offers.id','offers.product_id','offers.promo_code','offers.price','offers.title','offers.sub_title','offers.provider','offers.offer_note','offers.offer_start','offers.offer_end','offers.created_at','offers.currency','offers.affiliate_link','offers.product_cat','offers.status')
+            ->where('offers.offer_cat','Regular')
+            ->where('offers.status','active')
+            ->where('offers.visible','on')
+            ->where('users.status', 1)
+            ->whereBetween('offers.offer_end', [$start_date . " 00:00:00", "offer_end"])
+            ->orderBy('offers.created_at', 'DESC')
+            ->take(12)
             ->get();
-        $expired_offers = DB::table("offers")
-            ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status')
-            ->where('status','active')
-            ->where('visible','on')
-            ->where("offer_end","<",$start_date . " 00:00:00")
-            ->orderBy('created_at', 'DESC')
-            ->take(3)
-            ->get();
-        return view('frontend.index',compact('exlusive_offers','special_offers','regular_offers','expired_offers'));
+
+        return view('frontend.index',compact('exlusive_offers','special_offers','regular_offers'));
     }
     public function domain_offer()
     {
@@ -160,11 +161,14 @@ class HomeController extends Controller
         $start_date = date_validate(date('Y-m-d'));
         $all_offers = DB::table("offers")
             ->select('id','product_id','promo_code','price','title','sub_title','provider','offer_note','offer_start','offer_end','created_at','currency','affiliate_link','product_cat','status','offer_cat')
-            ->where('status','active')
             ->where('visible','on')
+            ->where('status','!=', 'pending')
             ->where("offer_end","<",$start_date . " 00:00:00")
+            ->orWhere('offers.status','expire')
+            // ->Where('offers.status','active')
             ->orderBy('created_at', 'DESC')
             ->get();
+            
         return view('frontend.more_offers',compact('all_offers'));
     }
     public function submit_offer($id = null)
@@ -218,7 +222,27 @@ class HomeController extends Controller
         }else{
             return redirect()->back()->with('flashMessageDanger',"Old password did not match ! Try again or do forget password.");
         }
+    }
 
+    public function subscribe(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email'=>'required|unique:subscribers',
+            ]);
+        $data = ([
+            'email'=> $request->email,
+            'created_at' => date('Y-m-d')
+        ]);
+        if ($validator->fails()) {
+            return 0;
+        }else{
+            try {
+                $dataSet = DB::table('subscribers')->insert($data);
+                return 1;
+            } catch (Exeption $th) {
+                return 0;
+            }
+        }
+        
     }
 
 

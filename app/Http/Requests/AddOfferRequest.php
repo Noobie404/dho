@@ -27,7 +27,6 @@ class AddOfferRequest extends FormRequest
             "product_cat" => "required|string",
             "offer_cat" => "required|string",
             "title" => "required|string",
-            "sub_title" => "required|string",
             "provider" => "required|string",
             "promo_code" => "nullable|string",
             "offer_start" => "required|date",

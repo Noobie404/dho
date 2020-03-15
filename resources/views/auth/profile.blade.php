@@ -91,7 +91,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="position-relative form-group"><label for="name" class="">User Name</label>
-                                        <input name="name" id="email" placeholder="name" value="{{ Auth::user()->name }}" type="text" class="form-control" required></div>
+                                        <input name="username" id="email" placeholder="name" value="{{ Auth::user()->username }}" type="text" class="form-control" required></div>
 
                                 </div>
                                 <div class="col-md-6">
@@ -102,10 +102,6 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="position-relative form-group"><label for="twitter" class="">Resident Name</label>
-                                        <input name="resident_name" id="resident_name" placeholder="Resident Name" value="{{ Auth::user()->resident_name }}" type="text" class="form-control" required></div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="position-relative form-group"><label for="password" class="">Password (If not to change leave it blank)</label>
                                         <input name="password" id="password" placeholder="Password" type=text value="" class="form-control"></div>

@@ -42,10 +42,13 @@ class AuthLoginController extends Controller
 
         ];
 
-
         try {
             DB::table('users')->insert($data);
-            return redirect()->route('login')->with("flashMessageSuccess", "Your Account Created Successfully ! ");
+            if (null !==Auth::user() && (Auth::user()->user_type=="Super Admin" || Auth::user()->user_type == "Admin" )) {
+                return back()->with("flashMessageSuccess", "Your Account Created Successfully ! ");
+            }else{
+                return redirect()->route('login')->with("flashMessageSuccess", "Your Account Created Successfully ! ");
+            }
 
         } catch (\Exception $e) {
             return  redirect()->route('sign-up')->with("flashMessageDanger", $e->getMessage());
@@ -154,9 +157,9 @@ class AuthLoginController extends Controller
 
     public function edit(Request $request)
     {
-
-
+        
         $data = DB::table('users')->select('image', 'password')->where('id', $request->id)->first();
+       
 
         if (!empty($request->image)) {
 
@@ -180,13 +183,11 @@ class AuthLoginController extends Controller
 
         $data = [
 
-            "name" => $request->name,
+            "username" => $request->username,
 
             "email" => $request->email,
 
             "image" => $input['image_name'],
-
-            "resident_name" => $request->resident_name,
 
             "password" => $pass,
 
@@ -198,14 +199,15 @@ class AuthLoginController extends Controller
         try {
 
             DB::table('users')->where('id', $request->id)->update($data);
-            return redirect("edit-profile")->with("flashMessageSuccess", "Profile Changed Successfully");
+            return redirect("/edit-profile")->with("flashMessageSuccess", "Profile Changed Successfully");
 
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (Exeption $e) {
 
             $errorCode = $e->errorInfo[1];
             if ($errorCode == '1062') {
-                return redirect("edit-profile")->with("flashMessageDanger", "User Name Already Exists ! Try Another One.");
+                return redirect("/edit-profile")->with("flashMessageDanger", "User Name Already Exists ! Try Another One.");
             }
+            return redirect("/edit-profile")->with("flashMessageDanger", $e->getmessage());
         }
     
     }

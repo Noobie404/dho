@@ -27,7 +27,7 @@
                                         <a>Dashboards</a>
                                     </li>
                                     <li class="active breadcrumb-item" aria-current="page">
-                                        Product
+                                        Offer
                                     </li>
                                 </ol>
                             </nav>
@@ -100,13 +100,13 @@
                                     <div class="section">
                                         <!-- <h5 class="card-title" style="margin-top: 7px;" id="tourist_no">Tourist NO : #1</h5> -->
                                         <div class=" form-row"  style="margin-top: 15px;">
-                                            <div class="form-group form-line-height col-lg-6 col-md-12">
+                                            <div class="form-group form-line-height col-lg-4 col-md-12">
                                                 <label class="input-label">Product ID<span class="important">*</span></label>
-                                                <input type="text" name="product_id" class="form-control" value="{{$product_info->product_id}}" placeholder="" required>
+                                                <input type="text" name="product_id" class="form-control" value="{{$product_info->product_id}}" placeholder="" required disabled>
                                             </div>
-                                            <div class="form-group form-line-height col-lg-6 col-md-12">
+                                            <div class="form-group form-line-height col-lg-4 col-md-12">
                                             <label class="input-label">Status<span class="important">*</span></label>
-                                            <select class="form-control-sm form-control" name="status" data-select2-id="2" tabindex="-1" aria-hidden="true" required>
+                                            <select class="form-control-sm form-control" name="status" data-select2-id="2" tabindex="-1" aria-hidden="true" required >
                                                     @if($product_info->status == "pending")
                                                     <option value="pending">Pending</option>
                                                     <option value="active">Active</option>
@@ -115,6 +115,10 @@
                                                     <option value="pending">Pending</option>
                                                     @endif
                                                 </select>
+                                            </div>
+                                            <div class="form-group form-line-height col-lg-4 col-md-12">
+                                                <label class="input-label">Visibility</label><br>
+                                               <label><input type="checkbox" name="visible" {{$product_info->visible == 'on' ? 'checked' : ''}}> Check to make it visible</label>
                                             </div>
                                         </div>
                                         <div class=" form-row">
@@ -164,7 +168,7 @@
                                                 <input type="text" name="title" class="form-control" value="{{$product_info->title}}" placeholder="" required>
                                             </div>
                                             <div class="form-group form-line-height col-lg-6 col-md-12">
-                                                <label class="input-label">Product Sub-title <span class="important">*</span></label>
+                                                <label class="input-label">Product Sub-title <span class="important">*(DO NOT DELETE THIS '~' SIGN)</span></label>
                                                 <input type="text" name="sub_title" class="form-control" value="{{$product_info->sub_title}}" placeholder="" required>
                                             </div>
                                         </div>
@@ -182,14 +186,14 @@
                                                 <input type="text" name="provider" class="form-control" value="{{$product_info->provider}}" placeholder="" required>
                                             </div>
                                             <div class="form-group form-line-height col-lg-3 col-md-12">
-                                                <label class="input-label">Promo Code <span class="important">*</span></label>
+                                                <label class="input-label">Promo Code</label>
                                                 <input type="text" name="promo_code" class="form-control" value="{{$product_info->promo_code}}" placeholder="">
                                             </div>
                                         </div>
     
                                         <div class=" form-row">
                                             <div class="form-group form-line-height col-lg-7 col-md-12">
-                                                <label class="input-label">Offer Note <span class="important">*</span></label>
+                                                <label class="input-label">Offer Note</label>
                                                 <input type="text" name="offer_note" class="form-control" value="{{$product_info->offer_note}}" placeholder="">
                                             </div>
                                             <div class="form-group form-line-height col-lg-3 col-md-6">

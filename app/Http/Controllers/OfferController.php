@@ -17,14 +17,20 @@ class OfferController extends Controller
 
     public function submit_offer(AddOfferRequest $request){
         if ($request->id == 0) {
-        
+            if ($request->product_cat == "Web-Server") {
+                $sub_title = "CPU: ~".$request->sub_title1."~ RAM: ~".$request->sub_title2."~ Storage: ~".$request->sub_title3;
+            }else if($request->product_cat == "Hosting"){
+                $sub_title = "Storage: ~".$request->sub_title4."~ Bandwidth: ~".$request->sub_title5;
+            }else{
+                $sub_title = $request->sub_title;
+            }
         $product_id = 'DHO-'.mt_rand(100000, 999999);
 
         $data= [
             "product_cat" => $request->product_cat,
             "offer_cat" => $request->offer_cat,
             "title" => $request->title,
-            "sub_title" => $request->sub_title,
+            "sub_title" => $sub_title,
             "provider" => $request->provider,
             "promo_code" => $request->promo_code,
             "offer_start" => datetime_validate_24($request->offer_start),
@@ -51,6 +57,7 @@ class OfferController extends Controller
     }else{
 
         $old_data = DB::table('offers')->where('id', $request->id)->where('user_id', Auth::user()->id)->first();
+        
         $data_old= [
             "product_cat" => $old_data->product_cat,
             "offer_cat" => $old_data->offer_cat,
@@ -73,11 +80,18 @@ class OfferController extends Controller
             'created_at'=>date('Y-m-d H:i:s')
         ];
 
+        if ($request->product_cat == "Web-Server") {
+            $sub_title = "CPU: ~".$request->sub_title1."~ RAM: ~".$request->sub_title2."~ Storage: ~".$request->sub_title3;
+        }else if($request->product_cat == "Hosting"){
+            $sub_title = "Storage: ~".$request->sub_title4."~ Bandwidth: ~".$request->sub_title5;
+        }else{
+            $sub_title = $request->sub_title;
+        }
         $new_data= [
             "product_cat" => $request->product_cat,
             "offer_cat" => $request->offer_cat,
             "title" => $request->title,
-            "sub_title" => $request->sub_title,
+            "sub_title" => $sub_title,
             "provider" => $request->provider,
             "promo_code" => $request->promo_code,
             "offer_start" => datetime_validate_24($request->offer_start),

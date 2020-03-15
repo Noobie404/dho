@@ -1,17 +1,20 @@
 @include('layouts.master.header')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
 <section id="banner-main">
   <div class="container">
     <div class="row">
       <div class="page_heading">
         <h1>{{Request::segment(2) == null ? "Create" : "Update" }} Offer</h1><br>
-      </div>
-      <div class="breadcrumb-section" style="margin-left:-280px;">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{Request::segment(2) == null ? "Submit" : "Update" }} Offer</li>
-          </ol>
-        </nav>
+        <div class="breadcrumb-section">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{Request::segment(2) == null ? "Submit" : "Update" }} Offer</li>
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -94,19 +97,63 @@
       <div class="col-md-12">
         <div class="input-group input-group-md">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg">Product Title</span>
+            <span class="input-group-text" id="inputGroup-sizing-lg">Offer Title</span>
           </div>
-          <input type="text" class="form-control" value="{{isset($single_offer->title) ? $single_offer->title : old('title')}}" name="title" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: .COM" required>
+          <input type="text" class="form-control" id="p_title" value="{{isset($single_offer->title) ? $single_offer->title : old('title')}}" name="title" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: .COM" required>
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="single_subtitle">
       <div class="col-md-12">
         <div class="input-group input-group-md">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-lg">Product Sub-title</span>
+            <span class="input-group-text" id="sub_title_fade_span">Offer Sub-title</span>
           </div>
-          <input type="text" class="form-control" value="{{isset($single_offer->sub_title) ? $single_offer->sub_title : old('sub_title')}}" name="sub_title" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex:.COM is a TLD" required>
+          <input type="text" id="sub_title_fade" class="form-control" value="{{isset($single_offer->sub_title) ? $single_offer->sub_title : old('sub_title')}}" name="sub_title" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex:.COM is a TLD">
+        </div>
+      </div>
+    </div>
+    <div class="row" id="triple_subtitle">
+      <div class="col-md-4">
+        <div class="input-group input-group-md">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="sub_title_fadeIN_span1">CPU</span>
+          </div>
+          <input type="text" id="sub_title_fadeIN1" class="form-control" value="" name="sub_title1" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: 1">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group input-group-md">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="sub_title_fadeIN_span2">RAM</span>
+          </div>
+          <input type="text" id="sub_title_fadeIN2" class="form-control" value="" name="sub_title2" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: 512 MB">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group input-group-md">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="sub_title_fadeIN_span3">Storage</span>
+          </div>
+          <input type="text" id="sub_title_fadeIN3" class="form-control" value="" name="sub_title3" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: 1 TB">
+        </div>
+      </div>
+    </div>
+    <div class="row" id="double_subtitle">
+      <div class="col-md-6">
+        <div class="input-group input-group-md">
+          <div class="input-group-prepend">
+            <span class="input-group-text"">Storage</span>
+          </div>
+          <input type="text" id="sub_title_fadeIN4" class="form-control" value="" name="sub_title4" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: 500 GB">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group input-group-md">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Bandwidth</span>
+          </div>
+          <input type="text" id="sub_title_fadeIN5" class="form-control" value="" name="sub_title5" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="ex: 512 mbps">
         </div>
       </div>
     </div>
@@ -203,7 +250,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <label for="form-control"> Product Purchase Link</label>
+        <label for="form-control"> Offer Purchase Link</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon3">https://example.com/</span>
@@ -223,11 +270,17 @@
     </div>
     <div class="row">
       <div class="col-md-12">
+        <label for="form-control"> Offer Description</label>
         <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Product Description</span>
-          </div>
-          <textarea class="form-control" name="description" aria-label="With textarea" required>{{isset($single_offer->description) ? $single_offer->description : old('description')}}</textarea>
+          <textarea class="form-control" style="width: 100%" name="description" aria-label="With textarea" required>{{isset($single_offer->description) ? $single_offer->description : old('description')}}</textarea>
+              <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+          <script>
+              CKEDITOR.replace("description",
+              {
+                  width: '100%'
+              });
+          </script>
+          
         </div>
       </div>
     </div>
@@ -238,7 +291,6 @@
     </div>
   </div>
 </form>
-
 <script>
     $(document).ready(function() {
     $('#id_5').datetimepicker({
@@ -255,6 +307,192 @@
       "showTodayButton": true,
       "format": "MM/DD/YYYY hh:mm:ss A",
   });
+  $("#inputGroupSelect01").change();
 });
 </script>
 @include('layouts.master.footer')
+<script>
+  $("#inputGroupSelect01").change(function(){
+    var selected = $(this).children("option:selected").val();
+    if (selected == 'Web-Server') {
+      $("#single_subtitle").fadeOut(500);
+      $("#double_subtitle").fadeOut(500);
+      $("#triple_subtitle").fadeIn(500);
+      $("#sub_title_fadeIN1").prop('required',true);
+      $("#sub_title_fadeIN2").prop('required',true);
+      $("#sub_title_fadeIN3").prop('required',true);
+      $("#sub_title_fade").removeAttr('required');
+      $("#sub_title_fadeIN4").removeAttr('required');
+      $("#sub_title_fadeIN5").removeAttr('required');
+    }else if(selected == 'Hosting'){
+      $("#single_subtitle").fadeOut(500);
+      $("#triple_subtitle").fadeOut(500);
+      $("#double_subtitle").fadeIn(500);
+      $("#sub_title_fadeIN4").prop('required',true);
+      $("#sub_title_fadeIN5").prop('required',true);
+      $("#sub_title_fade").removeAttr('required');
+      $("#sub_title_fadeIN1").removeAttr('required');
+      $("#sub_title_fadeIN2").removeAttr('required');
+      $("#sub_title_fadeIN3").removeAttr('required');
+    }else{
+      $("#single_subtitle").fadeIn(500);
+      $("#triple_subtitle").fadeOut(500);
+      $("#double_subtitle").fadeOut(500);
+      $("#sub_title_fade").prop('required',true);
+      $("#sub_title_fadeIN1").removeAttr('required');
+      $("#sub_title_fadeIN2").removeAttr('required');
+      $("#sub_title_fadeIN3").removeAttr('required');
+      $("#sub_title_fadeIN4").removeAttr('required');
+      $("#sub_title_fadeIN5").removeAttr('required');
+    }
+  }); 
+</script>
+<?php 
+if (isset($single_offer->product_cat) && $single_offer->product_cat == "Web-Server") {
+  $cut = explode('~', $single_offer->sub_title);
+  $cpu = $cut[1];
+  $ram = $cut[3];
+  $storage = $cut[5];
+  ?>
+  <script>
+    $("#sub_title_fadeIN2").val('<?php echo $ram; ?>');
+    $("#sub_title_fadeIN1").val('<?php echo $cpu; ?>');
+    $("#sub_title_fadeIN3").val('<?php echo $storage; ?>');
+  </script>
+<?php }else if(isset($single_offer->product_cat) && $single_offer->product_cat == "Hosting") {
+    $cut = explode('~', $single_offer->sub_title);
+    $cpu = $cut[1];
+    $ram = $cut[3];
+     ?>
+<script>
+  $("#sub_title_fadeIN4").val('<?php echo $cpu; ?>');
+  $("#sub_title_fadeIN5").val('<?php echo $ram; ?>');
+</script>
+<?php } ?>
+<script>
+    $(document).ready(function() {
+        $('.submit_offer').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+              title: {
+                    message: 'This title is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'This field is required and cannot be empty'
+                        },
+                        stringLength: {
+                            min: 2,
+                            max: 20,
+                            message: 'The title must be more than 2 and less than 20 characters long'
+                        },
+                    }
+                },
+                sub_title: {
+                  message: 'This title is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 2,
+                          max: 45,
+                          message: 'The field must be more than 2 and less than 45 characters long'
+                      },
+                  }
+              },
+              sub_title1: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 1,
+                          max: 2,
+                          message: 'The field must be more than 1 and less than 2 characters long'
+                      },
+                  }
+              },
+              sub_title2: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 3,
+                          max: 7,
+                          message: 'The field must be more than 3 and less than 7 characters long'
+                      },
+                  }
+              },
+              sub_title3: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 3,
+                          max: 7,
+                          message: 'The field must be more than 3 and less than 7 characters long'
+                      },
+                  }
+              },
+              sub_title4: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 3,
+                          max: 7,
+                          message: 'The field must be more than 3 and less than 7 characters long'
+                      },
+                  }
+              },
+              sub_title5: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 3,
+                          max: 9,
+                          message: 'The field must be more than 3 and less than 9 characters long'
+                      },
+                  }
+              },
+              provider: {
+                  message: 'This field is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'This field is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 2,
+                          max: 18,
+                          message: 'The field must be more than 2 and less than 18 characters long'
+                      },
+                  }
+              },
+              offer_note: {
+                  message: 'This field is not valid',
+                  validators: {
+                      stringLength: {
+                          max: 40,
+                          message: 'The field must be less than 40 characters long'
+                      },
+                  }
+              },
+            }
+        });
+    });
+</script> 

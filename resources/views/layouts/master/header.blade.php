@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Barlow:400,700&display=swap" rel="stylesheet">
   <!-- Optional theme -->
-  <link href="{!! asset('master/css/style.css') !!}" rel="stylesheet">
+  <link href="{!! asset('master/css/style.css?v=1.1') !!}" rel="stylesheet">
   <link href="{!! asset('master/css/owl.carousel.css') !!}" rel="stylesheet">
   <link href="{!! asset('master/css/owl.carousel.min.css') !!}" rel="stylesheet">
   <link href="{!! asset('master/css/owl.theme.green.css') !!}" rel="stylesheet">
@@ -42,26 +42,26 @@
                 <a href="{{route('/')}}" class="nav-link">Home</a>
               </li>
               <li class="nav-item">
-                <a href="{{route('DomainOffer')}}" class="nav-link">Domain Offers</a>
+                <a href="{{route('DomainOffer')}}" class="nav-link">Domain</a>
               </li>
               <li class="nav-item">
-                <a href="{{route('HostingOffer')}}" class="nav-link">Hosting Offers</a>
+                <a href="{{route('HostingOffer')}}" class="nav-link">Hosting</a>
               </li>
               <li class="nav-item">
-                <a href="{{route('CombogOffer')}}" class="nav-link">Combo Offers</a>
+                <a href="{{route('CombogOffer')}}" class="nav-link">Combo</a>
               </li>
               <li class="nav-item">
-                <a href="{{route('WebservergOffer')}}" class="nav-link">Web-Server offers</a>
+                <a href="{{route('WebservergOffer')}}" class="nav-link">Web-Server</a>
               </li>
               <li class="nav-item">
                 <ul class="side-menu">
                   <li class="nav-item">
-                    <a href="{{route('SubmitOffer')}}" class="nav-link">Submit Offer</a>
+                    <a href="{{route('SubmitOffer')}}" class="nav-link">Submit</a>
                   </li>
                   <li class="nav-item"style="float:right;">
                           @if(null == Auth::user())
                           <a href="{{route('login')}}" class="nav-link"style="float:left; margin-right:5px;">Log in</a>
-                          <a href="{{route('sign-up')}}" class="nav-link"style="float:right;margin-left:5px;">Sign up</a>
+                          <!-- <a href="{{route('sign-up')}}" class="nav-link"style="float:right;margin-left:5px;">Sign up</a> -->
                           
                           </a>
                           @else

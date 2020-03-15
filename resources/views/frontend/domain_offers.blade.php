@@ -8,14 +8,14 @@
         $title = ucfirst($title2[0]);
         ?>
         <h1>{{$title}} Offers</h1><br>
-      </div>
-      <div class="breadcrumb-section">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{$title}} offers</li>
-          </ol>
-        </nav>
+        <div class="breadcrumb-section">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{$title}} offers</li>
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@
                             <span class="d-inline-block pr-2">
                                 <i class="lnr-apartment opacity-6"></i>
                             </span>
-                            <span class="d-inline-block">Expired Product List</span>
+                            <span class="d-inline-block">Expired Offer List</span>
                         </div>
                         <div class="page-title-subheading opacity-10">
                             <nav class="" aria-label="breadcrumb">
@@ -27,7 +27,7 @@
                                         <a>Dashboards</a>
                                     </li>
                                     <li class="active breadcrumb-item" aria-current="page">
-                                        Filter Expired Products
+                                        Filter Expired Offers
                                     </li>
                                 </ol>
                             </nav>
@@ -41,18 +41,19 @@
                 </div>
             </div>
         </div>
-        <!-- table Section -->
+<!-- table Section -->
         <div class="mbg-3 h-auto pl-0 pr-0 bg-transparent no-border card-header">
             <div class="card-header-title fsize-5 text-capitalize font-weight-normal"></div>
         </div>
-        @include("layouts.includes.flash")
         <div class="main-card mb-3 card">
             <div class="card-body">
+                @include("layouts.includes.flash")
                 <table style="width: 100%;" id="process_data_table" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Product ID</th>
+                            <th>User Name</th>
+                            <th>Offer ID</th>
                             <th>Title</th>
                             <th>Offer Start</th>
                             <th>Offer End</th>
@@ -70,38 +71,17 @@
     </div>
 </div>
 @include('layouts.footer')
-<div class="modal fade bd-example-modal-lg" id="sms_send" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-xl" id="auth_edit_offer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Send Message</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-row">
-                    <div class="col-md-6 form-group">
-                        <label for="title" class="">Guest Name</label>
-                        <input name="name" id="name" placeholder="Name" type="text" class="form-control" disabled>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label for="title" class="">Mobile Number</label>
-                        <input name="number" id="number" placeholder="Mobile number" value="" type="text" class="form-control" disabled>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-12">
-                        <div class="position-relative form-group">
-                            <label for="Description" class="">Message</label>
-                            <textarea class="form-control" id="message" name="message"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer" style="display: flex;">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" data-dismiss="modal" onclick="message_sent()" class="btn btn-primary">Send</button>
+            <div class="modal-body" id="modal-body2">
+                @include('dashboard.product_info.auth_edit_offer')
             </div>
         </div>
     </div>
@@ -116,6 +96,11 @@
 <script src="{!! asset('js/sweetalert.min.js') !!}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        var fileref=document.createElement('script');
+        fileref.setAttribute("type","text/javascript");
+        fileref.setAttribute("src", "https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js");
+
+        document.getElementById("to-be-ckcdn").appendChild(fileref);
         var table =
             $('#process_data_table').DataTable({
                 processing: false,
@@ -147,6 +132,11 @@
                         render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }
+                    },
+                    {
+                        data: 'username',
+                        name: 'users.username',
+                        searchable: true
                     },
                     {
                         data: 'product_id',
@@ -182,22 +172,21 @@
                     {
                         data: 'status',
                         name: 'status',
+                        id: 'id',
                         end_date: 'end_date',
                         searchable: true,
                         render: function(data, type, row) {
-                            var compareTo = moment(row.end_date).unix(Number);
-                            var CurrentDate = moment().unix(Number);
-                            var isAfter = moment(CurrentDate).isAfter(compareTo);
-
-                            if(data == "cancel"){
-                                    return '<div class="badge badge-pill badge-warning">Cancel</div>'
-                            }else if (CurrentDate > compareTo || row.status == "pending") {
-                                    return '<div class="badge badge-pill badge-warning">Pending</div>'
-                            }else if (CurrentDate > compareTo || row.status == "active") {
-                            return '<div class="badge badge-pill badge-success">Active</div>'
-                            }else {
                             return '<div class="badge badge-pill badge-danger">Expire</div>'
-                            }
+
+                            // if(data == "cancel"){
+                            //         return '<div class="badge badge-pill badge-warning">Cancel</div>'
+                            // }else if (CurrentDate > compareTo || row.status == "pending") {
+                            //         return '<div class="badge badge-pill badge-warning">Pending</div>'
+                            // }else if (CurrentDate > compareTo || row.status == "active") {
+                            // return '<div class="badge badge-pill badge-success">Active</div>'
+                            // }else {
+                            // return '<div class="badge badge-pill badge-danger">Expire</div>'
+                            // }
                         }
                     },
                     {
@@ -213,10 +202,9 @@
                         id: 'id',
                         searchable: false,
                         render: function(data, type, row) {
-                            return "<a href='/single-product-info/" + row.id + "' class='btn-hover-shine btn-shadow btn btn-warning btn-sm' target='_blank'>Detils</a>";
+                            return "<a href='javascript:void(0)' title='View' onclick='append_offer_data("+ data + ")' class='btn-hover-shine btn-shadow btn btn-warning btn-sm'><i class='fa fa-edit'></i></a> | <a href='javascript:void(0)' onclick='delete_offer(" + row.id + ",this)' class='btn-hover-shine btn-shadow btn btn-danger btn-sm' title='Delete'><i class='fa fa-trash'></i></a>";
                             /* if (row.status == 2) {
-                                return "<a href='approve/" + row.id + "/approve' class='btn-shadow btn btn-info'>Approve</a><a href='approve/" + row.id + "/decline' class='btn-shadow btn btn-danger'>Decline</a>";
-                                moment(dateString,"MMMM Do YYYY, h:mm a").toDate();
+                                return "<a href='/single-product-info/" + row.id + "' class='btn-hover-shine btn-shadow btn btn-warning btn-sm' target='_blank' title='View'><i class='fa fa-edit'></i></a> | <a href='javascript:void(0)' onclick='delete_offer(" + row.id + ",this)' class='btn-hover-shine btn-shadow btn btn-danger btn-sm' title='Delete'><i class='fa fa-trash'></i></a>";
                             } else {
                                 return '<center><i class="fa fa-remove m--font-danger"></i></center>';
                             } */
@@ -243,8 +231,8 @@
         var action_filter_html = '<select class="form-control-sm form-control" id="event_status" data-select2-id="2" tabindex="-1" aria-hidden="true">' +
             '<option value="">Select Status</option>' +
             '<option value="active">Active</option>' +
-            '<option value="cancel">Cancel</option>' +
             '<option value="pending">Pending</option>' +
+            '<option value="expire">Expire</option>' +
             // '<option value="Expired">Expired</option>' +
             '</select>'; 
         $('#action-filter').append(action_filter_html);
@@ -252,18 +240,18 @@
         $('#event_status').on('change', function() {
             var event_status = $(this).val();
             if (event_status != "") {
-                table.columns(6).search(event_status).draw();
+                table.columns(7).search(event_status).draw();
             }
         });
         var date_picker_html = '<div id="date_range" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;"> <i class="fa fa-calendar"> </i>&nbsp; <span> </span> <i class="fa fa-caret-down"></i></div>';
         $('#date-filter').append(date_picker_html);
         $(function() {
-            var start = moment().subtract(29, 'days');
+            var start = moment().subtract(365, 'days');
             var end = moment();
             function cb(start, end) {
                 $('#date_range span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
                 var range = start.format("YYYY-MM-DD") + "~" + end.format("YYYY-MM-DD");
-                table.columns(3).search(range).draw();
+                table.columns(5).search(range).draw();
                 //alert(range);
             }
             $('#date_range').daterangepicker({
@@ -286,33 +274,123 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    function sms_pop_up(number, name) {
-        $('#number').val(number);
-        $('#name').val(name);
-        $('#message').val('');
-    }
-    function message_sent() {
-        var number = $('#number').val();
-        var message = $('#message').val();
+    function append_offer_data(id) {
         $.ajax({
-            url: 'message-send',
+            url: '{{url("auth-offer-info")}}',
             type: 'post',
             data: {
-                number: number,
-                message: message,
+                id: id,
             },
             dataType: 'json',
             success: function(response) {
-                if (response) {
-                    swal("Message Sent Successfully", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Message Send Error !", {
-                        icon: "error",
-                    });
+                if (response['product_cat'] == "Web-Server") {
+                var cut = response['sub_title'].split("~");
+                var cpu = cut[1];
+                var ram = cut[3];
+                var storage = cut[5];
+
+                $("#sub_title_fadeIN2").val(ram);
+                $("#sub_title_fadeIN1").val(cpu);
+                $("#sub_title_fadeIN3").val(ram);
+                }else if(response['product_cat'] == "Hosting") {
+                var cut = response['sub_title'].split("~");
+                var cpu = cut[1];
+                var ram = cut[3];
+                    
+                $("#sub_title_fadeIN4").val(cpu);
+                $("#sub_title_fadeIN5").val(ram);
                 }
+                $('#offer_starts').val(moment(response['offer_start']).format("MM/DD/YYYY hh:mm:ss A"));
+                $('#offer_ends').val(moment(response['offer_end']).format("MM/DD/YYYY hh:mm:ss A"));
+                $("#inputGroupSelect01").val(response['product_cat']).change();
+                $("#offer_cat").val(response['offer_cat']).change();
+                $("#title").val(response['title']);
+                $("#sub_title_fade").val(response['sub_title']);
+                $("#provider").val(response['provider']);
+                $("#provider").val(response['provider']);
+                $("#promo_code").val(response['promo_code']);
+                $("#offer_note").val(response['offer_note']);
+                $("#currency").val(response['currency']).change();
+                $("#price").val(response['price']);
+                $("#product_link").val(response['product_link']);
+                $("#affiliate_link").val(response['affiliate_link']);
+                $("#description").text('');
+                $("#description").text(response['description']);
+                $("#product_id").val(response['product_id']);
+                $("#user_append_id").val(response['user_id']);
+                $("#id").val(response['id']);
+                $("#status").val(response['status']).change();
+                $("#fullname").val(response['fullname']).change();
+                $("#email").val(response['email']).change();
+                CKEDITOR.remove('description');
+
+                if (CKEDITOR.instances['description']){
+                    CKEDITOR.instances['description'].destroy(true);
+                }
+                CKEDITOR.replace('description');
+
+                $('#auth_edit_offer').modal();
+            }
+        });
+    }
+
+    function delete_offer(id,the) {
+
+    $.ajax({
+
+        url: '/delete-offer',
+        type: 'post',
+        data: {
+            id: id,
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        success: function(response) {
+
+            if (response==1) {
+
+                $(the).closest("tr").fadeOut(200, function () {
+                    $(this).remove();
+                });
+
+                swal({
+                    title: "Offer deleted successfully !",
+                    text: "Selected offer is deleted",
+                    icon: "success",
+                    buttons: false,
+                })
+
+            }else{
+                swal({
+                    title: "Error",
+                    text: "Please try again after some time !",
+                    icon: "error",
+                    buttons: false,
+                })
+            }
+                $(".swal-text").css('color', '#F55F3D');
+                $(".swal-text").css('font-weight', '600');
+                $(".swal-title").css('font-size', '18px');
+
+            }
+        });
+    }
+
+    function change_status(id,the) {
+        var optionVal = the.value;
+        $.ajax({
+
+        url: '{{url("auth-update-status")}}',
+        type: 'post',
+        data: {
+            status: optionVal,
+            id: id,
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+        },
+        dataType: 'json',
+        success: function(response) {
             }
         });
     }
 </script>
+

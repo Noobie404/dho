@@ -19,7 +19,7 @@ class check_user_access
         if (!is_null(Auth::user())) {
             return $next($request);
         } else {
-            return redirect('sign-in')->with('flashMessageDanger', 'Access Denied !');
+            return redirect('sign-up')->with('flashMessageDanger', 'Access Denied !');
         }
     }
 }

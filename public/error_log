@@ -24,3 +24,40 @@ Stack trace:
 [22-Jan-2020 07:06:35 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/ticketgripe/public_html/app/Http/Controllers/Dashboard/UserInfoController.php on line 33
 [22-Jan-2020 09:45:50 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/ticketgripe/public_html/app/Http/Controllers/Dashboard/UserInfoController.php on line 32
 [22-Jan-2020 11:37:15 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/ticketgripe/public_html/app/Http/Controllers/Dashboard/UserInfoController.php on line 39
+[20-Feb-2020 07:51:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Symfony\Component\VarDumper\Dumper\json_encode() in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php:131
+Stack trace:
+#0 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php(842): Symfony\Component\VarDumper\Dumper\HtmlDumper->getDumpHeader()
+#1 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(502): Symfony\Component\VarDumper\Dumper\HtmlDumper->dumpLine(0, true)
+#2 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(241): Symfony\Component\VarDumper\Dumper\CliDumper->endValue(Object(Symfony\Component\VarDumper\Cloner\Cursor))
+#3 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(372): Symfony\Component\VarDumper\Dumper\CliDumper->dumpString(Object(Symfony\Component\VarDumper\Cloner\Cursor), 'Call to undefin...', false, 0)
+#4 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(278): Symfony\Component\Var in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php on line 131
+[20-Feb-2020 07:51:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Symfony\Component\VarDumper\Dumper\json_encode() in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php:131
+Stack trace:
+#0 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php(842): Symfony\Component\VarDumper\Dumper\HtmlDumper->getDumpHeader()
+#1 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(502): Symfony\Component\VarDumper\Dumper\HtmlDumper->dumpLine(0, true)
+#2 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(241): Symfony\Component\VarDumper\Dumper\CliDumper->endValue(Object(Symfony\Component\VarDumper\Cloner\Cursor))
+#3 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(372): Symfony\Component\VarDumper\Dumper\CliDumper->dumpString(Object(Symfony\Component\VarDumper\Cloner\Cursor), 'Use of undefine...', false, 0)
+#4 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(278): Symfony\Component\Var in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php on line 131
+[20-Feb-2020 07:51:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function Symfony\Component\VarDumper\Dumper\json_encode() in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php:131
+Stack trace:
+#0 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php(842): Symfony\Component\VarDumper\Dumper\HtmlDumper->getDumpHeader()
+#1 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(502): Symfony\Component\VarDumper\Dumper\HtmlDumper->dumpLine(0, true)
+#2 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/CliDumper.php(241): Symfony\Component\VarDumper\Dumper\CliDumper->endValue(Object(Symfony\Component\VarDumper\Cloner\Cursor))
+#3 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(372): Symfony\Component\VarDumper\Dumper\CliDumper->dumpString(Object(Symfony\Component\VarDumper\Cloner\Cursor), 'Call to undefin...', false, 0)
+#4 /home/domainhostingo/public_html/vendor/symfony/var-dumper/Cloner/Data.php(278): Symfony\Component\Var in /home/domainhostingo/public_html/vendor/symfony/var-dumper/Dumper/HtmlDumper.php on line 131
+[20-Feb-2020 10:11:55 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/UserInfoController.php on line 103
+[20-Feb-2020 10:13:57 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/UserInfoController.php on line 106
+[20-Feb-2020 20:08:05 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 45
+[20-Feb-2020 20:08:12 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 45
+[20-Feb-2020 20:09:05 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 45
+[22-Feb-2020 13:23:58 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 48
+[22-Feb-2020 13:24:34 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 48
+[22-Feb-2020 13:24:43 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 48
+[22-Feb-2020 14:01:30 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 61
+[22-Feb-2020 14:02:09 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 60
+[22-Feb-2020 14:02:39 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 58
+[22-Feb-2020 14:43:06 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 57
+[22-Feb-2020 14:46:18 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 57
+[22-Feb-2020 14:46:29 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 199233536 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 57
+[22-Feb-2020 17:19:36 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 148
+[24-Feb-2020 15:03:15 Asia/Dhaka] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 98570240 bytes) in /home/domainhostingo/public_html/app/Http/Controllers/Dashboard/AuthProductController.php on line 300

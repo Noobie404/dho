@@ -31,10 +31,10 @@
                   </div>
                     <div class="col-sm-6">
                       <h3>
-                      {{$all_offer->offer_cat}} Offer 
+                      {{$all_offer->product_cat}} Offer 
                       <br><span> {{$all_offer->title}} only {{$all_offer->price}} {{$all_offer->currency}} </span></h3>
                     </div>
-                    <div class="col-sm-3" style="padding-right: 0;">
+                    <div class="col-sm-3" style="padding-right: 10px;">
                       <h4><span class="dot"></span> Active</h4>
                     </div>
                   </div>
@@ -42,7 +42,7 @@
                 <div class="card-body">
                   <div class="tldname">
                     <h2>{{$all_offer->title}}</h2>
-                    <h3>{{$all_offer->sub_title}}</h3>
+                    <h3>{{str_replace("~", "", $all_offer->sub_title)}}</h3>
                   </div>
                   <div class="provider-name">
                     <h3>Provider Name:<span> {{$all_offer->provider}}</span></h3>
@@ -94,14 +94,17 @@
                   <div class="card-buttons">
                     <div class="row">
                       <div class="col-sm-7">
-                      <a id="order-now-{{$all_offer->id}}" class="card-order" href="{{$all_offer->affiliate_link}}" target="_blank"> Order Now </a>
+                        @if($all_offer->promo_code != null)
+                        <a data-toggle="modal" data-target="#exampleModal"id="modal-open" onclick="modal_open({{$all_offer->id}})" data-whatever="@mdo" class="card-order" href="javascript:void(0)"> Order Now </a>
+                        @else
+                        <a href="{{$all_offer->affiliate_link}}" target="_blank" class="card-order"> Order Now </a>
+                        @endif
                       </div>
+                      <a style="display: hidden" id="order-now-{{$all_offer->id}}" href="{{$all_offer->affiliate_link}}" target="_blank"></a>
                       <div class="col-sm-5">
-                        <a class="card-details" href="{{url('/product-detail')}}/{{$all_offer->id}}"> More Details </a>
+                        <a class="card-details" data-toggle="modal" data-target="#exampleModalMore" id="modal-open"  href="javascript:void(0)" onclick="open_details({{$all_offer->id}})"> More Details </a>                  
                       </div>
                     </div>
-  
-  
                   </div>
                 </div>
               </div>

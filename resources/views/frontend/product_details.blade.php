@@ -4,14 +4,14 @@
     <div class="row">
       <div class="page_heading">
         <h1>{{$product_info->product_cat}} Offers</h1><br>
-      </div>
-      <div class="breadcrumb-section">
-        <nav aria-label="breadcrumb">
-           <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{$product_info->product_cat}} offers</li>
-           </ol>
-        </nav>
+        <div class="breadcrumb-section">
+          <nav aria-label="breadcrumb">
+             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$product_info->product_cat}} offers</li>
+             </ol>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
           <table class="table table-bordered table-hover table-striped">
             <tr>
               <td class="col-sm-3"> <strong>Sub-title</strong></td>
-              <td class="col-sm-9"> {{$product_info->sub_title}}</td>
+              <td class="col-sm-9"> {{str_replace("~", "", $product_info->sub_title)}}</td>
             </tr>
             <tr>
               <td class="col-sm-3"> <strong>Category</strong></td>

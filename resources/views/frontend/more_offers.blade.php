@@ -8,18 +8,18 @@
         @else
         <h1>{{$all_offers[0]->offer_cat}} Offers</h1><br>
         @endif
-      </div>
-      <div class="breadcrumb-section">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-            @if(Request::segment(1) == "expired-offer")
-            <li class="breadcrumb-item active" aria-current="page">Expired offers</li>
-            @else
-            <li class="breadcrumb-item active" aria-current="page">{{$all_offers[0]->offer_cat}} offers</li>
-            @endif
-          </ol>
-        </nav>
+        <div class="breadcrumb-section">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+              @if(Request::segment(1) == "expired-offer")
+              <li class="breadcrumb-item active" aria-current="page">Expired offers</li>
+              @else
+              <li class="breadcrumb-item active" aria-current="page">{{$all_offers[0]->offer_cat}} offers</li>
+              @endif
+            </ol>
+          </nav>
+        </div>
       </div>
     </div>
   </div>

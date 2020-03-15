@@ -14,7 +14,7 @@
                             <span class="d-inline-block pr-2">
                                 <i class="lnr-apartment opacity-6"></i>
                             </span>
-                            <span class="d-inline-block">TIcket Gripe Portal</span>
+                            <span class="d-inline-block">Domain Hosting Offer Portal</span>
                         </div>
                         <div class="page-title-subheading opacity-10">
                             <nav class="" aria-label="breadcrumb">
@@ -50,13 +50,13 @@
                 <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
                     <div class="widget-chat-wrapper-outer">
                         <div class="widget-chart-content">
-                            <h6 class="widget-subheading">Total Events</h6>
+                            <h6 class="widget-subheading">Total Offers</h6>
                             <div class="widget-chart-flex">
                                 <div class="widget-numbers mb-0 w-100">
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4">
                                             <small class="opacity-5"><i class="fa fa-calculator"> </i></small>
-                                            11
+                                            {{ $offer_count }}
                                         </div>
                                     </div>
                                 </div>
@@ -74,46 +74,8 @@
                                 <div class="widget-numbers mb-0 w-100">
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4 text-danger">
-                                            <small class="opacity-5 text-muted"><i class="fa fa-university"></i> </small>
-                                        11
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-chat-wrapper-outer">
-                        <div class="widget-chart-content">
-                            <h6 class="widget-subheading">Total Income </h6>
-                            <div class="widget-chart-flex">
-                                <div class="widget-numbers mb-0 w-100">
-                                    <div class="widget-chart-flex">
-                                        <div class="fsize-4">
-                                            <small class="opacity-5"><i class="fa fa-calculator"> </i></small>
-                                            11
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
-                    <div class="widget-chat-wrapper-outer">
-                        <div class="widget-chart-content">
-                            <h6 class="widget-subheading">Total Revenue</h6>
-                            <div class="widget-chart-flex">
-                                <div class="widget-numbers mb-0 ">
-                                    <div class="widget-chart-flex">
-                                        <div class="fsize-4">
-                                            <small class="opacity-5"><i class="fa fa-angle-down"></i> </small>
-                                            11
+                                            <small class="opacity-5 text-muted"><i class="pe-7s-users"></i> </small>
+                                        {{ $user_count }}
                                         </div>
                                     </div>
                                 </div>
@@ -126,16 +88,79 @@
                 <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
                     <div class="widget-chat-wrapper-outer">
                         <div class="widget-chart-content">
-                            <h6 class="widget-subheading"> Total Registree</h6>
+                            <h6 class="widget-subheading">Pending Offers </h6>
                             <div class="widget-chart-flex">
                                 <div class="widget-numbers mb-0 w-100">
                                     <div class="widget-chart-flex">
                                         <div class="fsize-4">
+                                            <small class="opacity-5"><i class="fa fa-calculator"> </i></small>
+                                            {{ $pending_count }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
+                    <div class="widget-chat-wrapper-outer">
+                        <div class="widget-chart-content">
+                            <h6 class="widget-subheading">Active Offers</h6>
+                            <div class="widget-chart-flex">
+                                <div class="widget-numbers mb-0 ">
+                                    <div class="widget-chart-flex">
+                                        <div class="fsize-4">
                                             <span class="text-success pr-2">
-                                                <i class="fa fa-address-card"></i>
+                                                <i class="fa fa-check-circle"></i>
                                             </span>
                                             <small class="opacity-5"></small>
-                                            11
+                                            {{ $active_count }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
+                    <div class="widget-chat-wrapper-outer">
+                        <div class="widget-chart-content">
+                            <h6 class="widget-subheading"> Force Expire Offers</h6>
+                            <div class="widget-chart-flex">
+                                <div class="widget-numbers mb-0 w-100">
+                                    <div class="widget-chart-flex">
+                                        <div class="fsize-4">
+                                            <span class="text-danger pr-2">
+                                                <i class="fa fa-times-circle"></i>
+                                            </span>
+                                            <small class="opacity-5"></small>
+                                            {{ $fexpire_count }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card-shadow-primary mb-3 widget-chart widget-chart2 text-left card">
+                    <div class="widget-chat-wrapper-outer">
+                        <div class="widget-chart-content">
+                            <h6 class="widget-subheading"> Date Expire Offers</h6>
+                            <div class="widget-chart-flex">
+                                <div class="widget-numbers mb-0 w-100">
+                                    <div class="widget-chart-flex">
+                                        <div class="fsize-4">
+                                            <span class="text-danger pr-2">
+                                                <i class="fa fa-calendar-times-o"></i>
+                                            </span>
+                                            <small class="opacity-5"></small>
+                                            {{ $dexpire_count }}
                                         </div>
                                     </div>
                                 </div>
@@ -145,53 +170,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="main-card mb-3 card">
-            <div class="card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">Recent Pending Chapter List</div>
-
-            </div>
-            <div class="table-responsive">
-                <table class="align-middle text-truncate mb-0 table table-borderless table-hover">
-                    <thead>
-
-                        <tr>
-
-                            <th>Id</th>
-                            <th>Invoice</th>
-                            <th>Domain name</th>
-                            <th>Asking price</th>
-                            <th>Sold Price</th>
-                            <th>Seller </th>
-                            <th>Buyer</th>
-                            <th>Payment</th>
-                            <th>status</th>
-                            <th>Payment date </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-                        
-                    </tbody> 
-                </table>
-            </div>
-
-            <div class="d-block p-4 text-center card-footer">
-
-                <a class="btn-pill btn-shadow btn-wide fsize-1 btn btn-dark btn-lg" href="{{url('pending-list')}}">
-                    <span class="mr-2 opacity-7"><i class="fa fa-cog fa-spin"></i>
-                    </span>
-                    <span class="mr-1">View Complete Report</span>
-                </a>
-
-            </div>
-
-        </div>
-
     </div>
-
 </div>
 
 <script src="{!! asset('js/sweetalert.min.js') !!}"></script>

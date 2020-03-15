@@ -1,10 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 
-
-<!-- Mirrored from demo.dashboardpack.com/architectui-html-pro/dashboards-minimal-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Aug 2019 06:48:46 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <meta charset="utf-8">
@@ -26,8 +23,6 @@
     <link href="{!! asset('css/gallery.css') !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
-
-    <!--  <script src="https://cdn.ckeditor.com/4.12.1/basic/ckeditor.js"></script> -->
     <script src="{!! asset('js/jquery.min.js') !!}"></script>
     <script src="{!! asset('js/jquery3.3.1.js') !!}"></script>
     <script src="{!! asset('js/bootstrap-datetimepicker.min.js') !!}"></script>

@@ -26,13 +26,14 @@ Route::get("/","HomeController@index_page")->name("/");
     //login action
     Route::post("user-login","AuthLoginController@login")->name("user.login");
     Route::post("promo-code","Dashboard\AuthProductController@promo_code_append");
-    Route::get("product-detail/{id}","Dashboard\AuthProductController@product_detail");
+    Route::post("product-detail","Dashboard\AuthProductController@product_detail")->name('product-detail');
+    Route::post('subscribe', 'HomeController@subscribe')->name('subscribe');
+    Route::post("UpdateUser","HomeController@update_user_info")->name("UpdateUser");
 
     Route::group(['middleware' => 'check_user_access','auth'], function () {
 
         Route::get("submit-offer/{id?}","HomeController@submit_offer")->name("SubmitOffer");
         Route::get("account","HomeController@account_info")->name("Account");
-        Route::post("update-user","HomeController@update_user_info")->name("UpdateUser");
         Route::post("update-passrord","HomeController@Update_password")->name("UpdatePassword");
         Route::post("submit-offer","OfferController@submit_offer")->name("CreateOffer");
         //user Logout action
@@ -40,6 +41,7 @@ Route::get("/","HomeController@index_page")->name("/");
         Route::post('put-on-hold', 'OfferController@putonhold')->name("put-on-hold");
         Route::post('offer-delete', 'OfferController@offer_delete')->name("offer-delete");
         Route::get('user-dashboard', 'Dashboard\UserInfoController@user_dashboard')->name('Userdashboard');
+        Route::get('user-details/{id}', 'Dashboard\UserInfoController@user_details');
 
     });
     Route::get('dhoadmin', 'AuthLoginController@admin_login_form')->name('admin.login');
@@ -53,7 +55,22 @@ Route::get("/","HomeController@index_page")->name("/");
         Route::post('expired-product-list-dt', 'Dashboard\AuthProductController@expired_product_info_dt');
         Route::get('single-product-info/{id}', 'Dashboard\AuthProductController@product_info_single');
         Route::post('single-product-info', 'Dashboard\AuthProductController@auth_edit_offer')->name('AuthEditOffer');
-    
+        Route::post('auth-user-info', 'Dashboard\UserInfoController@user_info_modal');
+        Route::get('about-us', 'Dashboard\UserInfoController@about_us')->name('auth.about');
+        Route::post('about-us', 'Dashboard\UserInfoController@about_us_update')->name('updated.about-us');
+        Route::get('edit-profile', 'AuthLoginController@show');
+        Route::post('edit-data', 'AuthLoginController@edit')->name('edit-data');
+        Route::post('delete-offer', 'Dashboard\AuthProductController@offer_delete')->name("offer-delete");
+        Route::get('add-user', 'Dashboard\UserInfoController@add_user')->name('AddUser');
+        Route::post('update-user', 'Dashboard\UserInfoController@update_user')->name('auth.user.register');
+        Route::post('delete-user', 'Dashboard\UserInfoController@delete_user');
+        Route::get('add-product/{id}', 'Dashboard\AuthProductController@auth_add_offer');
+        Route::post("auth-add-product","Dashboard\AuthProductController@submit_offer")->name('auth.add.offer');
+        Route::get('aaa', 'Dashboard\AuthProductController@aaa'); 
+        Route::post('auth-offer-info', 'Dashboard\AuthProductController@auth_edit_offer_view'); 
+        Route::post('auth-update-status', 'Dashboard\AuthProductController@auth_edit_offer_status'); 
+        Route::post('auth-multi-select', 'Dashboard\AuthProductController@auth_multy_select');
+        Route::get('aaa', 'Dashboard\AuthProductController@aaa');
     });
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,15 +151,6 @@ Route::get("exam","OrderController@demo_example");
 
 Route::get('clear', 'HomeController@All_clear');
 
-
-
-//login action
-Route::post("user-login","AuthLoginController@login")->name("user.login");
-//register action
-Route::post("user-register","AuthLoginController@register")->name("user.register");
-//user Logout action
-Route::post('user-logout', 'AuthLoginController@logout')->name("user.logout");
-
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -156,7 +164,6 @@ Route::group(['middleware' => 'CheckAdmin','auth'], function () {
     Route::post('dashboard', 'AuthLoginController@index')->name('user-create');
     Route::get('user-list', 'Dashboard\UserInfoController@user_info')->name('UserList');
     Route::post('user_info_datatable', 'Dashboard\UserInfoController@user_info_dt');
-    Route::post('auth-user-info', 'Dashboard\UserInfoController@user_info_modal');
     Route::post('suspend-user', 'Dashboard\UserInfoController@suspend_user');
     Route::get('event-list/{id?}', 'Dashboard\AuthEventController@event_info')->name('EventList');
     Route::post('event-list-dt', 'Dashboard\AuthEventController@event_info_dt');

@@ -6,14 +6,14 @@
         <div class="row">
             <div class="page_heading">
                 <h1>Offer Management</h1><br>
-            </div>
-            <div class="breadcrumb-section" style="margin-left:-430px;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Offer Management</li>
-                    </ol>
-                </nav>
+                <div class="breadcrumb-section">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Offer Management</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                                     <td>{{$pending_offers->product_cat}}</td>
                                     <td>{{$pending_offers->offer_cat}}</td>
                                     <td>{{$endtime}}</td>
-                                    <td><a href='/submit-offer/{{$pending_offers->id}}' target='_blank' title='Update'><i class='fa fa-edit btn btn_table mr-2'></i></a><span>|</span><a href='javascript:void(0)' title='Delete'><i class='fa fa-trash btn btn_table ml-2'></i></a></td>
+                                    <td><a href='/submit-offer/{{$pending_offers->id}}' target='_blank' title='Update'><i class='fa fa-edit btn btn_table mr-2'></i></a><span>|</span><a href='javascript:void(0)' onclick='delete_offer({{$pending_offers->id}},this)' title='Delete'><i class='fa fa-trash btn btn_table ml-2'></i></a></td>
                                 </tr>
                                 @endif
                                 @endforeach
@@ -182,7 +182,7 @@
                                     <td>{{$hold_offers->product_cat}}</td>
                                     <td>{{$hold_offers->offer_cat}}</td>
                                     <td>{{$endtime}}</td>
-                                    <td><a href='/submit-offer/{{$hold_offers->id}}' target='_blank' title='Update'><i class='fa fa-edit btn btn_table'></i></a><span>|</span><a href='javascript:void(0)' onclick='delete_offer({{$hold_offers->id}},this)' title='Delete'><i class='fa fa-trash btn btn_table'></i></a><span>|</span><a onclick="put_on_hold({{$hold_offers->id}},this,1)" href='javascript:void(0)' title='Put on hold'><i class='fa fa-exclamation-triangle btn'></i></a></td>
+                                    <td><a href='/submit-offer/{{$hold_offers->id}}' target='_blank' title='Update'><i class='fa fa-edit btn btn_table' style='padding: 5px;'></i></a><span>|</span><a href='javascript:void(0)' onclick='delete_offer({{$hold_offers->id}},this)' title='Delete'><i class='fa fa-trash btn btn_table' style='padding: 5px;'></i></a><span>|</span><a onclick="put_on_hold({{$hold_offers->id}},this,1)" href='javascript:void(0)' title='Release'><i class='fa fa-exclamation-triangle btn' style='padding: 5px;'></i></a></td>
                                 </tr>
                                 @endif
                                 @endforeach

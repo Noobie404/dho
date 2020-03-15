@@ -4,14 +4,14 @@
         <div class="row">
             <div class="page_heading">
                 <h1>Account Information</h1><br>
-            </div>
-            <div class="breadcrumb-section" style="margin-left:-430px;">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">My Account</li>
-                    </ol>
-                </nav>
+                <div class="breadcrumb-section">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                   <div class="personal-form">
                     <div class="row">
                       <div class="col-md-12">
-                      <form class="personal-form-body" action="{{ route('UpdateUser') }}" method="post" enctype="multipart/form-data">
+                      <form class="personal-form-body" action="{{ url('UpdateUser') }}" method="post" enctype="multipart/form-data">
                       @include('layouts.includes.flash')
                       @if ($errors->any())
                       <div class="alert alert-danger">

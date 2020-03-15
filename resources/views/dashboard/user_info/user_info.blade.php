@@ -45,9 +45,9 @@
         <div class="mbg-3 h-auto pl-0 pr-0 bg-transparent no-border card-header">
             <div class="card-header-title fsize-5 text-capitalize font-weight-normal"></div>
         </div>
-        @include("layouts.includes.flash")
         <div class="main-card mb-3 card">
             <div class="card-body">
+                @include("layouts.includes.flash")
                 <table style="width: 100%;" id="process_data_table" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
@@ -69,19 +69,17 @@
     </div>
 </div>
 @include('layouts.footer')
-<div class="modal fade bd-example-modal-lg" id="sms_send" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade bd-example-modal-xl" id="auth_add_offer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Details</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" id="modal-body2">
-            </div>
-            <div class="modal-footer" style="display: flex;">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                @include('dashboard.product_info.offer_form')
             </div>
         </div>
     </div>
@@ -177,12 +175,13 @@
                     {
                         data: 'id',
                         status: 'status',
+                        name: 'username',
                         searchable: false,
                         render: function(data, type, row) {
                             if (row.status == 1) {
-                                return "<a href='javascript:void(0)'data-toggle='modal' data-target='#sms_send' onclick='user_details("+ data + ")' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-danger btn-sm'>Suspend</a>";
+                                return "<a href='/user-details/"+ data + "' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-danger btn-sm'>Suspend</a>|<a href='javascript:void(0)' data-toggle='modal' data-target='#auth_add_offer' onclick='append_uid(\""+row.username+"\","+ data + ")' class='btn-hover-shine btn-shadow btn btn-info btn-sm'>Add Offer</a>|<a href='javascript:void(0)' onclick='delete_user("+data+",this)' class='btn-hover-shine btn-shadow btn btn-danger btn-sm' title='Delete'><i class='fa fa-trash'></i></a>";
                             }else{
-                                return "<a href='javascript:void(0)'data-toggle='modal' data-target='#sms_send' onclick='user_details(" + data + ")' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-warning btn-sm'>Unspend</a>";
+                                return "<a href='/user-details/"+ data + "' class='btn-hover-shine btn-shadow btn btn-alternate btn-sm'>Detils</a>|<a href='javascript:void(0)' onclick='suspend_user("+ data + ","+row.status+")' class='btn-hover-shine btn-shadow btn btn-warning btn-sm'>Unspend</a>|<a href='javascript:void(0)'data-toggle='modal' data-target='#auth_add_offer' onclick='append_uid(\""+row.username+"\","+ data + ")' class='btn-hover-shine btn-shadow btn btn-info btn-sm'>Add Offer</a>|<a href='javascript:void(0)' onclick='delete_user("+data+",this)' class='btn-hover-shine btn-shadow btn btn-danger btn-sm' title='Delete'><i class='fa fa-trash'></i></a>";
                             }
                         }
                     },
@@ -237,6 +236,15 @@
         });
     }
 
+    function append_uid(username,id) {
+        // $("#modal-body2").empty();
+        $('#exampleModalLongTitle').empty();
+        $("#exampleModalLongTitle").append('Add Offer to ' + username);
+        $('#user_append_id').empty();
+        $("#user_append_id").val(id);
+        // $('#auth_add_offer').modal('show')  
+    }
+
     function suspend_user(id,status) {
         $.ajax({
             url: '/suspend-user',
@@ -262,6 +270,31 @@
                     window.setTimeout(function(){ 
                         location.reload();
                     } ,3000);
+                }
+            }
+        });
+    }
+    function delete_user(id,the) {
+        $.ajax({
+            url: '/delete-user',
+            type: 'post',
+            data: {
+                id: id,
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response == 1) {
+                    swal("user deleted successfully !", {
+                        icon: "success",
+                    });
+                    $(the).closest("tr").fadeOut(200, function() {
+                        $(this).remove();
+                    });
+                } else {
+                    swal("Error !", {
+                        icon: "error",
+                    });
                 }
             }
         });
